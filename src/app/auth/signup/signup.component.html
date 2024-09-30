@@ -1,0 +1,98 @@
+
+<div class="wrapper">
+   
+    <div class="leftsection">
+        <img class="logo" src="assets/logo2.png" alt="">
+        <img class="forgot" src="assets/signup.png" alt="">
+    </div>
+
+    <div class="rightsection">
+        <div class="formContainer">
+
+        <span>Create Profile</span>
+        <span style="font-family: 'Expletus Sans', sans-serif;">Please fill out the following information</span>
+
+            <form class="form1" [formGroup]="forgotform" (ngSubmit)="forgot(forgotform.value)">
+                <div class="row">
+                    <div class="col-12">
+                        <span style="font-family:Roboto;">Personal Information</span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-6">
+                        <input class="input-text" type="text" name="email" formControlName="email" placeholder="User Name">
+                    </div>
+                    <div class="col-6">
+                        <input class="input-text" type="text" name="email" formControlName="email" placeholder="Password">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-6">
+                        <input class="input-text" type="text" name="email" formControlName="email" placeholder="Email">
+                    </div>
+                    <div class="col-6">
+                        <input class="input-text" type="text" name="email" formControlName="email" placeholder="Phone No">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-6">
+                        <input class="input-text" type="text" name="email" formControlName="email" placeholder="Gender">
+                    </div>
+                    <div class="col-6">
+                        <input class="input-text" type="text" name="email" formControlName="email" placeholder="Dob">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <input class="input-text" type="text" name="email" formControlName="email" placeholder="Address">
+                    </div>
+                    
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <span style="font-family:Roboto;">Business Information</span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <input class="input-text" type="text" name="email" formControlName="email" placeholder="Organization Name">
+                    </div>
+                </div>
+
+                
+                <div class="row">
+                    <div class="col-12">
+                        <input class="input-text" type="text" name="email" formControlName="email" placeholder="Organization Email">
+                    </div>
+                </div>
+
+                
+                <div class="row">
+                    <div class="col-12">
+                        <input class="input-text" type="text" name="email" formControlName="email" placeholder="Organization No">
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-12">
+                        <input class="input-text" type="text" name="email" formControlName="email" placeholder="Organization Address">
+                    </div>
+                </div>
+
+
+                
+                <button class="button" type="button">Create Profile</button>
+           </form>
+          
+
+        </div>
+       
+    </div>
+</div>
