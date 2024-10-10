@@ -12,7 +12,7 @@
         <span>Create Profile</span>
         <span style="font-family: 'Expletus Sans', sans-serif;">Please fill out the following information</span>
 
-            <form class="form1" [formGroup]="forgotform" (ngSubmit)="forgot(forgotform.value)">
+            <form class="form1" [formGroup]="signUpFormGroup" (ngSubmit)="signUp(signUpFormGroup.value)">
                 <div class="row">
                     <div class="col-12">
                         <span style="font-family:Roboto;">Personal Information</span>
@@ -21,10 +21,10 @@
 
                 <div class="row">
                     <div class="col-6">
-                        <input class="input-text" type="text" name="email" formControlName="email" placeholder="User Name">
+                        <input class="input-text" type="text" name="username" formControlName="username" placeholder="User Name">
                     </div>
                     <div class="col-6">
-                        <input class="input-text" type="text" name="email" formControlName="email" placeholder="Password">
+                        <input class="input-text" type="text" name="password" formControlName="password" placeholder="Password">
                     </div>
                 </div>
 
@@ -33,22 +33,22 @@
                         <input class="input-text" type="text" name="email" formControlName="email" placeholder="Email">
                     </div>
                     <div class="col-6">
-                        <input class="input-text" type="text" name="email" formControlName="email" placeholder="Phone No">
+                        <input class="input-text" type="text" name="phone_no" formControlName="phone_no" placeholder="Phone No">
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-6">
-                        <input class="input-text" type="text" name="email" formControlName="email" placeholder="Gender">
+                        <input class="input-text" type="text" name="gender" formControlName="gender" placeholder="Gender">
                     </div>
                     <div class="col-6">
-                        <input class="input-text" type="text" name="email" formControlName="email" placeholder="Dob">
+                        <input class="input-text" type="text" name="dob" formControlName="dob" placeholder="Dob">
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-12">
-                        <input class="input-text" type="text" name="email" formControlName="email" placeholder="Address">
+                        <input class="input-text" type="text" name="address" formControlName="address" placeholder="Address">
                     </div>
                     
                 </div>
@@ -61,34 +61,34 @@
 
                 <div class="row">
                     <div class="col-12">
-                        <input class="input-text" type="text" name="email" formControlName="email" placeholder="Organization Name">
+                        <input class="input-text" type="text" name="organization_name" formControlName="organization_name" placeholder="Organization Name">
                     </div>
                 </div>
 
                 
                 <div class="row">
                     <div class="col-12">
-                        <input class="input-text" type="text" name="email" formControlName="email" placeholder="Organization Email">
+                        <input class="input-text" type="text" name="organization_email" formControlName="organization_email" placeholder="Organization Email">
                     </div>
                 </div>
 
                 
                 <div class="row">
                     <div class="col-12">
-                        <input class="input-text" type="text" name="email" formControlName="email" placeholder="Organization No">
+                        <input class="input-text" type="text" name="organization_phone_no" formControlName="organization_phone_no" placeholder="Organization No">
                     </div>
                 </div>
 
 
                 <div class="row">
                     <div class="col-12">
-                        <input class="input-text" type="text" name="email" formControlName="email" placeholder="Organization Address">
+                        <input class="input-text" type="text" name="organization_address" formControlName="organization_address" placeholder="Organization Address">
                     </div>
                 </div>
 
 
                 
-                <button class="button" type="button">Create Profile</button>
+                <button class="button" type="submit">Create Profile</button>
            </form>
           
 
