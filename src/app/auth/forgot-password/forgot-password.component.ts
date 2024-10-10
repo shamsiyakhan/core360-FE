@@ -12,7 +12,7 @@ import { HttpApiService } from 'src/app/http-api.service';
 export class ForgotPasswordComponent {
   step1=true
   step2=false
-  step3=false
+  step3=false /* condition */
   constructor(
     private fb:FormBuilder,
     private http:HttpClient, 
