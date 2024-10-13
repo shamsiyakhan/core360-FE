@@ -9,6 +9,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { RegisterUserComponent } from './register-user/register-user.component'
+
 @NgModule({
   declarations: [
     ForgotPasswordComponent,
@@ -16,6 +17,7 @@ import { RegisterUserComponent } from './register-user/register-user.component'
     LoginComponent,
     SignupComponent,
     RegisterUserComponent
+    
   ],
   imports: [
     CommonModule,
