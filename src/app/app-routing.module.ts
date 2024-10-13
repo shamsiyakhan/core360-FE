@@ -6,8 +6,11 @@ const routes: Routes = [
   {
     path:'auth',
     loadChildren:()=>import('./auth/auth.module').then(auth=>auth.AuthModule)
+  },
+  {
+    path:'employee',
+    loadChildren:()=>import('./employee/employee.module').then(auth=>auth.EmployeeModule)
   }
-
 
 
 ];
