@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ManagerModule } from './manager/manager.module';
 
 const routes: Routes = [
 
@@ -10,9 +11,11 @@ const routes: Routes = [
   {
     path:'employee',
     loadChildren:()=>import('./employee/employee.module').then(auth=>auth.EmployeeModule)
+  }, 
+  {
+    path:'manager',
+    loadChildren:()=>import('./manager/manager.module').then(manager=>ManagerModule)
   }
-
-
 ];
 
 @NgModule({
