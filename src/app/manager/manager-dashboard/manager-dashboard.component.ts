@@ -6,5 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./manager-dashboard.component.scss']
 })
 export class ManagerDashboardComponent {
+  
+  
 
-}
+  }
+  
