@@ -1,17 +1,18 @@
-<div class="wrapper">
-    <div class="left" style="    background-color: yellow;
-    width: 50%;
-    height: 100%;
-    display: flex;
-    gap: 10px;
-">
-<img class="logo" src="assets/logo2.png" alt="" style="width:5% height:10%">
-<span>Employee Dashboard</span>
-<span>Inventory</span>
-<span>Tasklist</span>
-<span>Teams & Members</span>
+<div class="header">
+    <div class="leftSection">
+        <img src="assets/logo2.png" alt="">
+        <span style="font-weight: 600; color: #000;">Employee Dashboard</span>
+        <span>Inventory</span>
+        <span>TaskList</span>
+        <span>Teams & Members</span>
     </div>
-    <div class="right">
-
+    <div class="rightSection">
+        <i class="material-icons">message</i>
+        <i class="material-icons">notifications</i>
+        <div class="border">
+            <i class="material-icons">menu</i>
+            <i class="material-icons">person</i>
+        </div>
     </div>
 </div>
+<router-outlet></router-outlet>
