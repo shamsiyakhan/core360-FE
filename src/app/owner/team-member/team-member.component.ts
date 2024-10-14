@@ -30,8 +30,12 @@ const ELEMENT_DATA: PeriodicElement[] = [
 
 export class TeamMemberComponent implements OnInit{
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+
+  displayedColumnsMember: string[] = ['email', 'phonenumber', 'address', 'status'];
   dataSource = ELEMENT_DATA;
+  dataSource1:any
 addmember:any
+add=false
 role=[
   {
     value:103 , name:"Employee"
@@ -52,7 +56,7 @@ role=[
     this.addMember.patchValue({
       orgId:localStorage.getItem('orgId')
     })
-   
+    this.getOrganization()
   }
 
   
@@ -62,6 +66,13 @@ role=[
     roleId:[''], 
     orgId:['']
   });
+
+  getOrganization(){
+    this.http.get('http://localhost:3000/getorgPeople/'+localStorage.getItem('orgId')).subscribe((resp:any)=>{
+      console.warn(resp)
+      this.dataSource1=resp
+    })
+  }
 
   addMembers(){
     console.warn(this.addMember.value)
@@ -73,6 +84,7 @@ role=[
           icon: 'success',
           confirmButtonText: 'OK'
         });
+        this.getOrganization()
       }else{
         Swal.fire({
           title: 'Error',
@@ -82,6 +94,13 @@ role=[
         });
       }
     })
+  }
+  addMembersPage(){
+    this.add=true
+  }
+
+  close(){
+    this.add=false
   }
 
   
