@@ -8,6 +8,7 @@ import {MatSelectModule} from '@angular/material/select';
 import { TeamMemberComponent } from './team-member/team-member.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatTableModule} from '@angular/material/table';
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -19,7 +20,8 @@ import {MatTableModule} from '@angular/material/table';
     OwnerRoutingModule,
     MatSelectModule,
     MatTabsModule,
-    MatTableModule
+    MatTableModule,
+    ReactiveFormsModule
   ]
 })
 export class OwnerModule { }

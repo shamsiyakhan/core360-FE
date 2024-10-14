@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import Swal from 'sweetalert2';
 export interface PeriodicElement {
   name: string;
   position: number;
@@ -25,7 +28,61 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 
 
-export class TeamMemberComponent {
+export class TeamMemberComponent implements OnInit{
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = ELEMENT_DATA;
+addmember:any
+role=[
+  {
+    value:103 , name:"Employee"
+  },
+  {
+    value:102 , name:"Manager"
+  }
+]
+  constructor(
+    private fb:FormBuilder,
+    private http:HttpClient
+  ){
+
+ 
+  }
+  ngOnInit(): void {
+    console.warn(localStorage.getItem('orgId'))
+    this.addMember.patchValue({
+      orgId:localStorage.getItem('orgId')
+    })
+   
+  }
+
+  
+
+  addMember=this.fb.group({
+    email:[''],
+    roleId:[''], 
+    orgId:['']
+  });
+
+  addMembers(){
+    console.warn(this.addMember.value)
+    this.http.post('http://localhost:3000/addManager' , this.addMember.value).subscribe((data:any)=>{
+      if(data.data){
+        Swal.fire({
+          title: 'Success!',
+          text: 'Added Successfully',
+          icon: 'success',
+          confirmButtonText: 'OK'
+        });
+      }else{
+        Swal.fire({
+          title: 'Error',
+          text: 'Adding Failed',
+          icon: 'error',
+          confirmButtonText: 'OK'
+        });
+      }
+    })
+  }
+
+  
 }
