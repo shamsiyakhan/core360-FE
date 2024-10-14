@@ -6,6 +6,9 @@ import { ManagerLayoutComponent } from './manager-layout/manager-layout.componen
 import { ManagerDashboardComponent } from './manager-dashboard/manager-dashboard.component';
 import {MatSelectModule} from '@angular/material/select';
 import { TeamsComponent } from './teams/teams.component';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatTableModule} from '@angular/material/table';
+
 
 @NgModule({
   declarations: [
@@ -16,7 +19,9 @@ import { TeamsComponent } from './teams/teams.component';
   imports: [
     CommonModule,
     ManagerRoutingModule,
-    MatSelectModule
+    MatSelectModule,
+    MatTabsModule,
+    MatTableModule
   ]
 })
 export class ManagerModule { }

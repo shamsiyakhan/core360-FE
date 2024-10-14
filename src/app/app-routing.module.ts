@@ -4,6 +4,8 @@ import { ManagerModule } from './manager/manager.module';
 
 const routes: Routes = [
 
+  { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
+
   {
     path:'auth',
     loadChildren:()=>import('./auth/auth.module').then(auth=>auth.AuthModule)
