@@ -34,6 +34,7 @@ login()
         confirmButtonText: 'OK'
       });
       localStorage.setItem('orgId' , dta.data.orgid)
+      localStorage.setItem('userid' , dta.data.userid)
       if(dta.data.roleid==101){
         this.router.navigate(['owner' , 'dashboard'])
       }else if(dta.data.roleid==102){

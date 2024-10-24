@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
  
@@ -12,22 +13,23 @@ import Swal from 'sweetalert2';
 export class SignupComponent implements OnInit {
 
   signUpFormGroup=this.fb.group({
-    organization_name:[''],
-    organization_email:[''],
-    organization_phone_no:[''],
-    organization_address:[''],
-    username:[''],
-    email:[''],
-    password:[''],
-    phone_no:[''],
-    address:[''],
-    gender:[''],
-    dob:[''],
-    role:[]
+    organization_name:['' , Validators.required],
+    organization_email:['' , Validators.required],
+    organization_phone_no:['' , Validators.required],
+    organization_address:['' , Validators.required],
+    username:['' , Validators.required],
+    email:['' , Validators.required],
+    password:['' , Validators.required],
+    phone_no:['' , Validators.required],
+    address:['' , Validators.required],
+    gender:['' , Validators.required],
+    dob:['' , Validators.required],
+    role:[101]
   })
   constructor(
     private fb:FormBuilder,
-    private http:HttpClient
+    private http:HttpClient,
+    private router:Router
   ){
       http.get('http://localhost:3000/').subscribe(d=>{
         console.warn(d)
@@ -43,21 +45,26 @@ export class SignupComponent implements OnInit {
 
   signUp(a:any){
     this.http.post('http://localhost:3000/signup' , this.signUpFormGroup.value).subscribe((response:any)=>{
+      console.warn(response)
       if(response.data){
         Swal.fire({
           title: 'Success!',
           text: 'Account Created Successfully',
           icon: 'success',
           confirmButtonText: 'Ok'
+        }).then(()=>{
+          this.router.navigate(['auth' , 'login'])
         });
-      }else{
+        
+      }else if(response.error){
         Swal.fire({
           title: 'Failure!',
-          text: 'Account Creation Failed',
+          text: response.error,
           icon: 'warning',
           confirmButtonText: 'Ok'
         });
       }
+      
     })
   }
 

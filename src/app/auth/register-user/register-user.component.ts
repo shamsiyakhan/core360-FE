@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
@@ -11,16 +11,17 @@ import Swal from 'sweetalert2';
 })
 export class RegisterUserComponent implements OnInit {
   id:any
+  emailDisable=true
   signUpFormGroup=this.fb.group({
-    userid:[''],
-    username:[''],
-    email:[''],
-    password:[''],
-    phone_no:[''],
-    address:[''],
-    gender:[''],
-    dob:[''],
-    role:[]
+    userid:['' , Validators.required],
+    username:['' , Validators.required],
+    email:['' , Validators.required],
+    password:['' , Validators.required],
+    phone_no:['' , Validators.required],
+    address:['' , Validators.required],
+    gender:['' , Validators.required],
+    dob:['' , Validators.required],
+    role:[''  , Validators.required]
   })
   constructor(
     private fb:FormBuilder,
