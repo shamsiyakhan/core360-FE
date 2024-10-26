@@ -5,17 +5,23 @@ import { EmployeeRoutingModule } from './employee-routing.module';
 import { EmpComponent } from './emp/emp.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MatSelectModule } from '@angular/material/select';
+import { TeamsComponent } from './teams/teams.component';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatTableModule} from '@angular/material/table';
 
 
 @NgModule({
   declarations: [
     EmpComponent,
-    DashboardComponent
+    DashboardComponent,
+    TeamsComponent
   ],
   imports: [
     CommonModule,
     EmployeeRoutingModule,
-    MatSelectModule
+    MatSelectModule,
+    MatTabsModule,
+    MatTableModule
   ]
 })
 export class EmployeeModule { }

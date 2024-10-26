@@ -43,7 +43,22 @@ export class SignupComponent implements OnInit {
       email:['']
   })
 
-  signUp(a:any){
+  encryptpassword()
+  {
+    console.warn(this.signUpFormGroup.value)
+    this.signUpFormGroup.controls['password'].value
+    console.warn(this.signUpFormGroup.controls['password'].value)
+    const password=this.signUpFormGroup.controls['password'].value
+    const encodedPassword = window.btoa(String(password));
+    this.signUpFormGroup.patchValue({
+      password:encodedPassword
+    })
+    this.signUp()
+  }
+
+
+  signUp(a?:any){
+console.warn("signup called")
     this.http.post('http://localhost:3000/signup' , this.signUpFormGroup.value).subscribe((response:any)=>{
       console.warn(response)
       if(response.data){

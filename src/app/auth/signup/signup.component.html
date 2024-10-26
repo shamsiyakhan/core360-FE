@@ -12,7 +12,7 @@
         <span>Create Profile</span>
         <span style="font-family: 'Expletus Sans', sans-serif;">Please fill out the following information</span>
 
-            <form class="form1" [formGroup]="signUpFormGroup" (ngSubmit)="signUp(signUpFormGroup.value)">
+            <form class="form1" [formGroup]="signUpFormGroup" (ngSubmit)="encryptpassword()">
                 <div class="row">
                     <div class="col-12">
                         <span style="font-family:Roboto;">Personal Information</span>
@@ -97,7 +97,7 @@
 
 
                 
-                <button class="button mt-4" type="submit" [disabled]="signUpFormGroup.invalid">Create Profile</button>
+                <button class="button mt-4" type="submit">Create Profile</button>
            </form>
           
 

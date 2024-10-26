@@ -22,6 +22,10 @@ export class LoginComponent {
   })
 login()
 {
+  const encrypt=window.btoa(String(this.loginform.controls['password'].value))
+  this.loginform.patchValue({
+    password:encrypt
+  })
   console.warn("function called")
   this.fareehahttp.post("http://localhost:3000/login", this.loginform.value).subscribe((dta:any)=>{
     console.warn(dta)
