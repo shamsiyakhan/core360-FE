@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ManagerLayoutComponent } from './manager-layout/manager-layout.component';
 import { ManagerDashboardComponent } from './manager-dashboard/manager-dashboard.component';
 import { TeamsComponent } from './teams/teams.component';
+import { InventoryComponent } from './inventory/inventory.component';
 
 const routes: Routes = [
 
@@ -17,6 +18,10 @@ const routes: Routes = [
         {
           path:'teams',
           component:TeamsComponent
+        },
+        {
+          path:'inventory',
+          component:InventoryComponent
         }
       ]
   }

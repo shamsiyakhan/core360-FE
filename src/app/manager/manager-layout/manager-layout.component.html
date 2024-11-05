@@ -4,10 +4,10 @@
     <div class="leftSection">
         <img src="assets/logo2.png" alt="">
         <span style="font-weight: 600; color: #000;">Manager Dashboard</span>
-        <span>Inventory</span>
+        <span (click)="inventory()" [ngClass]="{'active': isRouteActive('/inventory')}">Inventory</span>
         <span>Marketing</span>
         <span>TaskList</span>
-        <span (click)="team()">Teams & Member</span>
+        <span (click)="team()" [ngClass]="{'active': isRouteActive('teams')}">Teams & Member</span>
     </div>
     <div class="rightSection">
         <i class="material-icons">message</i>

@@ -8,13 +8,15 @@ import {MatSelectModule} from '@angular/material/select';
 import { TeamsComponent } from './teams/teams.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatTableModule} from '@angular/material/table';
+import { InventoryComponent } from './inventory/inventory.component';
 
 
 @NgModule({
   declarations: [
     ManagerLayoutComponent,
     ManagerDashboardComponent,
-    TeamsComponent
+    TeamsComponent,
+    InventoryComponent
   ],
   imports: [
     CommonModule,
