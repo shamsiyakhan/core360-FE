@@ -48,18 +48,24 @@ export class SignupComponent implements OnInit {
     console.warn(this.signUpFormGroup.value)
     this.signUpFormGroup.controls['password'].value
     console.warn(this.signUpFormGroup.controls['password'].value)
-    const password=this.signUpFormGroup.controls['password'].value
-    const encodedPassword = window.btoa(String(password));
-    this.signUpFormGroup.patchValue({
-      password:encodedPassword
-    })
+    
+  
+
+    
     this.signUp()
   }
 
 
   signUp(a?:any){
 console.warn("signup called")
-    this.http.post('http://localhost:3000/signup' , this.signUpFormGroup.value).subscribe((response:any)=>{
+const password=this.signUpFormGroup.controls['password'].value
+    const encodedPassword = window.btoa(String(password));
+const newFormGroup = this.fb.group({
+  ...this.signUpFormGroup.controls,
+  password: [encodedPassword, Validators.required], // Change the password field
+});
+
+    this.http.post('http://localhost:3000/signup' , newFormGroup.value).subscribe((response:any)=>{
       console.warn(response)
       if(response.data){
         Swal.fire({

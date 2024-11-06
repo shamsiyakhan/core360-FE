@@ -86,7 +86,8 @@ export class ForgotPasswordComponent {
    
   }
   confirm(){
-    this.apiService.postApi('http://localhost:3000/updatePassword',{password:this.forgotform.get('password')?.value,email:this.forgotform.get('email')?.value}).subscribe((result:any)=>{
+    const encrpt=window.btoa(String(this.forgotform.get('password')?.value))
+    this.apiService.postApi('http://localhost:3000/updatePassword',{password:encrpt,email:this.forgotform.get('email')?.value}).subscribe((result:any)=>{
       console.warn(result)
 
       if(result.error){

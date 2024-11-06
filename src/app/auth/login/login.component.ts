@@ -22,15 +22,19 @@ export class LoginComponent {
   })
 login()
 {
-  const encrypt=window.btoa(String(this.loginform.controls['password'].value))
+  const password=this.loginform.controls['password'].value
+  console.warn(password)
+  const encrypt=window.btoa(String(password))
   this.loginform.patchValue({
     password:encrypt
   })
   console.warn("function called")
-  this.fareehahttp.post("http://localhost:3000/login", this.loginform.value).subscribe((dta:any)=>{
+
+  this.fareehahttp.post("http://localhost:3000/login", {email:this.loginform.controls['email'].value, password:this.loginform.controls['password'].value}).subscribe((dta:any)=>{
     console.warn(dta)
     if(dta.data){
       this.loginform.reset()
+      localStorage.setItem("jwt" , dta.data.jwt)
       Swal.fire({
         title: 'Success!',
         text: 'Login Successful',

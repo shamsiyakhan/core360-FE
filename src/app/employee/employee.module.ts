@@ -8,7 +8,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { TeamsComponent } from './teams/teams.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatTableModule} from '@angular/material/table';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,7 +21,9 @@ import {MatTableModule} from '@angular/material/table';
     EmployeeRoutingModule,
     MatSelectModule,
     MatTabsModule,
-    MatTableModule
+    MatTableModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class EmployeeModule { }

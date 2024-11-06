@@ -6,6 +6,9 @@ import { AppComponent } from './app.component';
 import { TestComponent } from './test/test.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { InterceptService } from './intercept.service';
+
 
 @NgModule({
   declarations: [
@@ -20,7 +23,14 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: InterceptService,
+      multi: true
+  }
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
