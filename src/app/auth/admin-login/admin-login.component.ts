@@ -5,12 +5,11 @@ import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: 'app-admin-login',
+  templateUrl: './admin-login.component.html',
+  styleUrls: ['./admin-login.component.scss']
 })
-export class LoginComponent {
-  passwordVisible: boolean = false;
+export class AdminLoginComponent {
   constructor(
     private fareehahttp:HttpClient, 
     private fb:FormBuilder,
@@ -23,28 +22,21 @@ export class LoginComponent {
   })
 login()
 {
-  const password=this.loginform.controls['password'].value
-  console.warn(password)
-  const encrypt=window.btoa(String(password))
-
-
-  const data={
-    email:this.loginform.controls['email'].value,
+  const encrypt=window.btoa(String(this.loginform.controls['password'].value))
+  this.loginform.patchValue({
     password:encrypt
-  }
+  })
   console.warn("function called")
-
-  this.fareehahttp.post("http://localhost:3000/login", data).subscribe((dta:any)=>{
+  this.fareehahttp.post("http://localhost:3000/login", this.loginform.value).subscribe((dta:any)=>{
     console.warn(dta)
     if(dta.data){
       this.loginform.reset()
-      localStorage.setItem("jwt" , dta.data.jwt)
-    /*   Swal.fire({
+      Swal.fire({
         title: 'Success!',
         text: 'Login Successful',
         icon: 'success',
         confirmButtonText: 'OK'
-      }); */
+      });
       localStorage.setItem('orgId' , dta.data.orgid)
       localStorage.setItem('userid' , dta.data.userid)
       if(dta.data.roleid==101){
@@ -63,13 +55,5 @@ login()
       });
     }
   })
-}
-forgot(){
-  this.router.navigate(['auth' , 'forgot'])
-
-}
-
-togglePasswordVisibility() {
-  this.passwordVisible = !this.passwordVisible;
 }
 }

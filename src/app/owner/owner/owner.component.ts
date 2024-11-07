@@ -15,4 +15,7 @@ export class OwnerComponent {
   teamsmember(){
     this.router.navigate(['owner' , 'team-member'])
   }
+  taskList(){
+    this.router.navigate(['owner' , 'tasks'])
+  }
 }

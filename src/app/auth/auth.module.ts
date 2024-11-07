@@ -8,7 +8,8 @@ import { FormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
-import { RegisterUserComponent } from './register-user/register-user.component'
+import { RegisterUserComponent } from './register-user/register-user.component';
+import { AdminLoginComponent } from './admin-login/admin-login.component'
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { RegisterUserComponent } from './register-user/register-user.component'
     AuthComponent,
     LoginComponent,
     SignupComponent,
-    RegisterUserComponent
+    RegisterUserComponent,
+    AdminLoginComponent
     
   ],
   imports: [

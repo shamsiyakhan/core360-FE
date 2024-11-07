@@ -27,6 +27,10 @@ teams()
   this.route.navigate(['employee/teams'])
 }
 
+dashboard(){
+  this.route.navigate(['employee/dashboard'])
+}
+
 isRouteActive(route: string): boolean {
   if(this.route.url.includes(route)){
     return true

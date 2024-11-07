@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { OwnerComponent } from './owner/owner.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { TeamMemberComponent } from './team-member/team-member.component';
+import { TasksComponent } from './tasks/tasks.component';
 
 const routes: Routes = [
   {
@@ -15,6 +16,10 @@ const routes: Routes = [
       },{
         path:'team-member',
         component:TeamMemberComponent
+      },
+      {
+        path:"tasks",
+        component:TasksComponent
       }
     ]
   }

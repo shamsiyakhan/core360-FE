@@ -8,13 +8,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { InterceptService } from './intercept.service';
+import { ErrorInterceptorService } from './error-interceptor.service';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     TestComponent,
-   
+
   ],
   imports: [
     BrowserModule,
@@ -28,7 +29,12 @@ import { InterceptService } from './intercept.service';
       provide: HTTP_INTERCEPTORS,
       useClass: InterceptService,
       multi: true
-  }
+    },
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass:ErrorInterceptorService,
+      multi:true
+    }
 
   ],
   bootstrap: [AppComponent]

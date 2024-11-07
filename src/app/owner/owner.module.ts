@@ -9,11 +9,13 @@ import { TeamMemberComponent } from './team-member/team-member.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatTableModule} from '@angular/material/table';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TasksComponent } from './tasks/tasks.component';
 @NgModule({
   declarations: [
     DashboardComponent,
     OwnerComponent,
-    TeamMemberComponent
+    TeamMemberComponent,
+    TasksComponent
   ],
   imports: [
     CommonModule,

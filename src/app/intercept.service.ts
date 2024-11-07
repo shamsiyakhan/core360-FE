@@ -11,13 +11,13 @@ export class InterceptService implements HttpInterceptor{
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     // Get the token from local storage or any other storage you are using
     const token = localStorage.getItem('jwt');
-
+    console.warn(token)
     // Clone the request and add the authorization header
     let authReq = req;
     if (token) {
         authReq = req.clone({
             setHeaders: {
-                Authorization: `${token}`
+                Authorization: `Bearer ${token}`
             }
         });
     }

@@ -33,7 +33,7 @@ export class TeamMemberComponent implements OnInit {
   displayedColumns: string[] = ['teamname', 'teaminfo', 'users', 'action'];
 
   displayedColumnsMember: string[] = ['email', 'phonenumber', 'address', 'status'];
-  dataSource = ELEMENT_DATA;
+  dataSource = [];
   dataSource1: any
   selectedTab = 0
   addmember: any
@@ -90,6 +90,7 @@ export class TeamMemberComponent implements OnInit {
     userid:[''],
     orgid:['']
   })
+
 
   getOrganization() {
     this.http.get('http://localhost:3000/getorgPeople/' + localStorage.getItem('orgId')).subscribe((resp: any) => {

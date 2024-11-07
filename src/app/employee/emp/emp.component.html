@@ -5,7 +5,7 @@
         <span>Inventory</span>
         <span>TaskList</span>
         <span (click)="teams()">Teams & Members</span>-->
-        <span [ngClass]="{'active':isRouteActive('dashboard')}">Employee Dashboard</span>
+        <span  (click)="dashboard()"[ngClass]="{'active':isRouteActive('dashboard')}">Employee Dashboard</span>
             
         
           <!-- These elements can have 'active' class applied based on route -->

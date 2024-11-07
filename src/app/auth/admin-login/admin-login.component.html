@@ -1,0 +1,22 @@
+<div class="wrapper">
+    <div class="left">
+        <img class="logo" src="assets/logo2.png" alt="">
+        <img class="loginimg" src="assets/login.png" alt="">
+    </div>
+    <div class="right"> 
+        <div class="logincontainer">
+            <span class="heading">Login</span>
+            <span class="smallheading">Continue with Google or enter your details</span>
+            
+                <form class="loginform" action="" [formGroup]="loginform">
+                    <input type="text" placeholder="Enter Email" formControlName="email">
+                    <input type="text" placeholder="Enter Password" formControlName="password">
+                    <span style="position: relative;left:80%;"> Forgot Password?</span>
+                    <button class="button" name="button" (click)="login()">Login</button>
+                </form>
+            
+        </div>
+
+    </div>
+    
+</div>

@@ -17,7 +17,7 @@ export class ForgotPasswordComponent {
   constructor(
     private fb:FormBuilder,
     private http:HttpClient, 
-    private route:Router,
+    private router:Router,
     private apiService:HttpApiService
   )
   {
@@ -104,11 +104,16 @@ export class ForgotPasswordComponent {
           icon: 'success',
           confirmButtonText: 'Ok'
         });
+        this.router.navigate(['auth' , 'login'])
       }
     })
     this.step1=false
     this.step2=false
     this.step3=true
+}
+
+login(){
+  this.router.navigate(['auth' , 'login'])
 }
 
 }

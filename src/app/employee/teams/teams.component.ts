@@ -28,10 +28,10 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./teams.component.scss']
 })
 export class TeamsComponent {
-  displayedColumns: string[] = ['teamname', 'teaminfo', 'users', 'action'];
+  displayedColumns: string[] = ['teamname', 'teaminfo', 'users'];
 
   displayedColumnsMember: string[] = ['email', 'phonenumber', 'address', 'status'];
-  dataSource = ELEMENT_DATA;
+  dataSource = [];
   dataSource1: any
   selectedTab = 0
   addmember: any
