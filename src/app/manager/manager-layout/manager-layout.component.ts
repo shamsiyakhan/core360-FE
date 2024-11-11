@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 })
 export class ManagerLayoutComponent {
   currentRoute: string = '';
+  profile=false
 constructor(private route:Router){}
 
 team(){
@@ -23,6 +24,24 @@ isRouteActive(route: string): boolean {
   }else{
     return false
   }
+}
+
+marketing(){
+  this.route.navigate(['manager' , 'marketing'])
+}
+
+toggleProfile(){
+   
+  this.profile=!this.profile
+}
+
+
+tasks(){
+  this.route.navigate(['manager/task'])
+}
+logout(){
+  localStorage.clear()
+  this.route.navigate(['auth' , 'login'])
 }
 
 }

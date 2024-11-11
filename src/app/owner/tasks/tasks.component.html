@@ -11,14 +11,15 @@
                 <div class="row">
                     <div class="col-12">
                         <label for="taskname">Task Name</label>
-                        <input type="text" formControlName="taskName" class="inputtext" parentForm="addTask" placeholder="Task Name">
+                        <input type="text" formControlName="taskName" class="inputtext" parentForm="addTask"
+                            placeholder="Task Name">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-12">
                         <label for="deadline">Deadline</label>
                         <input type="datetime-local" class="inputtext" placeholder="Deadline" formControlName="deadline"
-                        parentForm="addTask" controlName="deadline">
+                            parentForm="addTask" controlName="deadline">
                     </div>
                 </div>
 
@@ -26,16 +27,16 @@
                     <div class="col-12">
                         <mat-form-field>
                             <mat-label>Select Member</mat-label>
-                            <mat-select formControlName="userId" >
-                              <mat-option *ngFor="let members of orgMembers" [value]="members.userid">
-                                {{members.username}}
-                              </mat-option>
+                            <mat-select formControlName="userId">
+                                <mat-option *ngFor="let members of orgMembers" [value]="members.userid">
+                                    {{members.username}}
+                                </mat-option>
                             </mat-select>
-                          </mat-form-field>
+                        </mat-form-field>
                     </div>
                 </div>
             </div>
-    
+
 
             <button class="assign" (click)="createTask()">Assign</button>
         </form>
@@ -43,37 +44,57 @@
 </div>
 
 <div class="mainContainer row">
-  
-    <div class="left col-2">
 
-    </div>
-    <div class="right col-10">
-        <div class="row mt-2">
-            <div class="col-12">
-                <input type="text" name="" id="" placeholder="Search.." style="width: 100%; border: none; outline: none; border-bottom: .3px solid rgba(128, 128, 128, 0.374);">
+    <div class="left col-2">
+        <div class="task-container">
+            <div class="task-header">Tasks</div>
+            <div class="task-list">
+                <div *ngFor="let task of tasks" class="task-item" [class.highlight]="selectedTask === task"
+                    (click)="highlightTask(task)">
+                    <span class="task-title">{{ task }}</span>
+                </div>
             </div>
         </div>
-        <div class="mainRight">
+    </div>
+    <div class="right col-10" >
+        <div class="row mt-2">
+            <div class="col-12">
+                <input type="text" placeholder="Search.."
+                    style="width: 100%; border: none; outline: none; border-bottom: .3px solid rgba(128, 128, 128, 0.374);"
+                    (input)="searchTasks($any($event.target).value)" />
+            </div>
+        </div>
+        <div class="mainRight" *ngIf="allTask.length>0">
             <div class="tasks" *ngFor="let task of allTask">
-                <div *ngIf="task.taskStatus=='Open'" >
-                    <img src="assets/round.png" alt="">  <span style="margin-left: 10px;">{{task.taskStatus}}</span>
+                <div *ngIf="task.taskStatus=='Open'">
+                    <img src="assets/round.png" alt=""> <span style="margin-left: 10px;">{{task.taskStatus}}</span>
                 </div>
 
-                <div *ngIf="task.taskStatus=='In Process'" >
-                    <img src="assets/blueround.png" alt="">  <span style="margin-left: 10px;">{{task.taskStatus}}</span>
+                <div *ngIf="task.taskStatus=='In Process'">
+                    <img src="assets/blueround.png" alt=""> <span style="margin-left: 10px;">{{task.taskStatus}}</span>
                 </div>
-               
+
+                <div *ngIf="task.taskStatus=='Completed'">
+                    <img src="assets/completeround.png" alt=""> <span style="margin-left: 10px;">{{task.taskStatus}}</span>
+                </div>
+
                 <div class="taskDetails">
                     <span> {{task.taskName}}</span>
                     <span>Deadline: {{ task.deadline | date: 'yyyy:dd:MM' }}</span>
                     <span>Assigned To: {{task?.userDetails.userName}}</span>
                     <span>Assigned By: {{task?.assignedBy.userName}}</span>
                 </div>
-               
+
 
             </div>
         </div>
+
+        <div class="mainRight" *ngIf="allTask.length < 1" style="display: flex; align-items: center; justify-content: center; height: 100%; width: 100%;">
+            <img src="assets/notask.png" alt="cannot" style="width: 50%; height: 60%;">
+          </div>
     </div>
+
+ 
 </div>
 
 <button class="createTask" (click)="addTaskToUser()">+ Create Task</button>

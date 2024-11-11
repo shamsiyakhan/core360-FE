@@ -4,6 +4,8 @@ import { ManagerLayoutComponent } from './manager-layout/manager-layout.componen
 import { ManagerDashboardComponent } from './manager-dashboard/manager-dashboard.component';
 import { TeamsComponent } from './teams/teams.component';
 import { InventoryComponent } from './inventory/inventory.component';
+import { TasksComponent } from './tasks/tasks.component';
+import { MarketingComponent } from './marketing/marketing.component';
 
 const routes: Routes = [
 
@@ -22,6 +24,13 @@ const routes: Routes = [
         {
           path:'inventory',
           component:InventoryComponent
+        },{
+          path:"task",
+          component:TasksComponent
+        },
+        {
+          path:"marketing",
+          component:MarketingComponent
         }
       ]
   }

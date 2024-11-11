@@ -11,6 +11,7 @@
     border-radius: 10px;
     display: flex;
     flex-direction: column;
+    background: white;
     .topSection{
         display: flex;
         width: 100%;
@@ -86,9 +87,10 @@
 
 .mainRight{
     width: 100%;
-    height: 100%;
+    /* height: 100%; */
+    gap: 10px;
     display: flex;
-    gap: 5% 5%;
+    gap: 51px 5%;
     flex-wrap: wrap;
     padding: 2% 2%;
     .tasks{
@@ -109,6 +111,45 @@
             display: flex;
             flex-direction: column;
             gap: 10px;
+            font-family: "Expletus Sans", sans-serif;
         }
     }
+}
+
+.task-container {
+    margin: 20px;
+    font-family: "Expletus Sans", sans-serif;
+}
+
+.task-header {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.task-list {
+    margin-top: 10px;
+    padding-left: 20px;
+    border-left: 2px solid #e0e0e0;
+}
+
+.task-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0;
+}
+
+.task-item .task-title {
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.task-item.highlight .task-title {
+    background-color: #EDF0FF;
+    color: #486BFF;
+}
+
+.task-count {
+    color: #666;
 }

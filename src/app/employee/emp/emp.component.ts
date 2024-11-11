@@ -7,7 +7,7 @@ import { NavigationEnd, Router } from '@angular/router';
   styleUrls: ['./emp.component.scss']
 })
 export class EmpComponent {
-
+  profile=false
   currentRoute: string = '';
   constructor(private route:Router){}
 
@@ -31,11 +31,29 @@ dashboard(){
   this.route.navigate(['employee/dashboard'])
 }
 
+tasks(){
+  this.route.navigate(['employee/task'])
+}
+
 isRouteActive(route: string): boolean {
   if(this.route.url.includes(route)){
     return true
   }else{
     return false
   }
+}
+
+toggleProfile(){
+   
+  this.profile=!this.profile
+}
+
+inventory(){
+  this.route.navigate(['employee/inventory'])
+}
+
+logout(){
+  localStorage.clear()
+  this.route.navigate(['auth' , 'login'])
 }
 }

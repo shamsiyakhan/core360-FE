@@ -9,12 +9,23 @@ import { TeamsComponent } from './teams/teams.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatTableModule} from '@angular/material/table';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TaskComponent } from './task/task.component';
+import { InventoryComponent } from './inventory/inventory.component';
+import { CategoryComponent } from './category/category.component';
+import { AddInventoryComponent } from './add-inventory/add-inventory.component';
+import { UpdateInventoryComponent } from './update-inventory/update-inventory.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
     EmpComponent,
     DashboardComponent,
-    TeamsComponent
+    TeamsComponent,
+    TaskComponent,
+    InventoryComponent,
+    CategoryComponent,
+    AddInventoryComponent,
+    UpdateInventoryComponent
   ],
   imports: [
     CommonModule,
@@ -23,7 +34,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatTabsModule,
     MatTableModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDialogModule
   ]
 })
 export class EmployeeModule { }

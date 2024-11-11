@@ -12,6 +12,104 @@ export class TasksComponent implements OnInit {
   add = false
   orgMembers:any
   allTask:any
+  allTaskCopy:any
+  tasks: string[] = ['All Tasks', 'Today', 'Tomorrow', 'This Week', 'This Month', 'Open', 'In Progress', 'Past Due'];
+  selectedTask: string | null = null;
+
+  highlightTask(task: string): void {
+    this.selectedTask = task;
+    console.warn(task)
+    if(this.selectedTask=="All Tasks"){
+      this.allTasks()
+    }else if(this.selectedTask=="Today"){
+      this.todayTasks()
+    }else if(this.selectedTask=="Tomorrow"){
+      this.tomorrowTasks()
+    }else if(this.selectedTask=="This Week"){
+      this.weekTasks()
+    }else if(this.selectedTask=="This Month"){
+      this.monthsTasks()
+    }else if(this.selectedTask=="Open"){
+      this.openTasks()
+    }else if(this.selectedTask=="In Progress"){
+      this.inProgressTasks()
+    }else if(this.selectedTask=="Past Due"){
+      this.pastDueTasks()
+    }
+  }
+
+  allTasks(){
+    this.allTask=this.allTaskCopy
+  }
+  todayTasks(){
+    const today = new Date();
+    const startOfDay = new Date(today.setHours(0, 0, 0, 0)); // Set time to 00:00:00
+    const endOfDay = new Date(today.setHours(23, 59, 59, 999)); // Set time to 23:59:59
+
+    this.allTask = this.allTaskCopy.filter((task:any) => {
+      const taskDate = new Date(task.deadline);
+      return taskDate >= startOfDay && taskDate <= endOfDay;
+    });
+  }
+
+  tomorrowTasks(){
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // Reset time to midnight to compare the date only
+    const tomorrowStart = new Date(today);
+    tomorrowStart.setDate(today.getDate() + 1); // Set date to tomorrow
+    const tomorrowEnd = new Date(tomorrowStart);
+    tomorrowEnd.setHours(23, 59, 59, 999); // Set time to the end of the day tomorrow
+
+    this.allTask = this.allTaskCopy.filter((task:any) => {
+      const taskDate = new Date(task.deadline);
+      return taskDate >= tomorrowStart && taskDate <= tomorrowEnd;
+    });
+  
+  }
+
+  openTasks(){
+    this.allTask = this.allTaskCopy.filter((task:any) => task.taskStatus == 'Open');
+  }
+
+  inProgressTasks(){
+    this.allTask = this.allTaskCopy.filter((task:any) => task.taskStatus === 'In Progress');
+  }
+  pastDueTasks(){
+    this.allTask = this.allTaskCopy.filter((task:any) => task.taskStatus == 'Past Due');
+  }
+
+  weekTasks(){
+    const today = new Date();
+    const firstDayOfWeek = today.getDate() - today.getDay(); // Get the first day of the current week (Sunday)
+    const startOfWeek = new Date(today.setDate(firstDayOfWeek)); // Set the date to Sunday at midnight
+    startOfWeek.setHours(0, 0, 0, 0); // Set time to the start of the day (midnight)
+
+    const endOfWeek = new Date(startOfWeek); // Copy start of the week
+    endOfWeek.setDate(startOfWeek.getDate() + 6); // Set it to Saturday
+    endOfWeek.setHours(23, 59, 59, 999); // Set time to the end of the day (11:59:59.999 PM)
+
+    this.allTask = this.allTaskCopy.filter((task:any) => {
+      const taskDate = new Date(task.deadline);
+      return taskDate >= startOfWeek && taskDate <= endOfWeek;
+    });
+  }
+
+  monthsTasks(){
+    const today = new Date();
+
+    // Get the start of the current month
+    const startOfMonth = new Date(today.getFullYear(), today.getMonth(), 1); // First day of the current month
+    startOfMonth.setHours(0, 0, 0, 0); // Set time to the start of the day (midnight)
+
+    // Get the end of the current month
+    const endOfMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0); // Last day of the current month
+    endOfMonth.setHours(23, 59, 59, 999); // Set time to the end of the day (11:59:59.999 PM)
+
+    this.allTask = this.allTaskCopy.filter((task:any) => {
+      const taskDate = new Date(task.deadline);
+      return taskDate >= startOfMonth && taskDate <= endOfMonth;
+    });
+  }
   addTask = this.fb.group({
     taskName: ['', Validators.required],
     assignedBy: ['', Validators.required],
@@ -72,6 +170,7 @@ export class TasksComponent implements OnInit {
     const orgId=localStorage.getItem('orgId')
     this.http.get(`http://localhost:3000/getOrgTask/${orgId}`).subscribe((res:any)=>{
       console.warn(res)
+      this.allTaskCopy=res.data
       this.allTask=res.data
     })
   }
@@ -81,5 +180,17 @@ export class TasksComponent implements OnInit {
       console.warn(resp)
       this.orgMembers=resp
     })
+  }
+
+  searchTasks(searchTerm: string): void {
+    if (searchTerm.trim() === '') {
+      // If the input is empty, reset allTask to the original list.
+      this.allTask = [...this.allTaskCopy];
+    } else {
+      // Filter allTaskCopy based on taskName and store in allTask.
+      this.allTask = this.allTaskCopy.filter((task:any) =>
+        task.taskName.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
   }
 }

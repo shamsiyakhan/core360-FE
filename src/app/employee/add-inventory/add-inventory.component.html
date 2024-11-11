@@ -1,0 +1,28 @@
+<div class="container" style="overflow: scroll;">
+    <div class="top">
+        <span style="font-size: 1.1rem;">Add Inventory</span>
+        <i class="fas fa-times close-icon" style="cursor: pointer;" (click)="close()"></i>
+    </div>
+    <form [formGroup]="addInventory" class="container" style="width: 100%;">
+
+        
+
+        <mat-form-field style="margin-right: auto;">
+            <mat-label>Select Category</mat-label>
+            <mat-select formControlName="inventcategory">
+                <mat-option *ngFor="let data of categories" [value]="data.categoryname">
+                    {{data.categoryname}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <input type="text" class="input" formControlName="inventname" placeholder="Inventory Name">
+
+        <input type="text" class="input" formControlName="price" placeholder="Inventory price">
+
+        <input type="text" class="input" formControlName="details" placeholder="Inventory details">
+
+        <input type="text" class="input" formControlName="stock" placeholder="Total stock">
+        <button (click)="addInventories()">Add Inventory</button>
+    </form>
+</div>

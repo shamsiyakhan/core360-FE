@@ -1,0 +1,41 @@
+.mainContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.top {
+    width: 100%;
+    height: 8%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 5%;
+    align-items: center;
+    border-bottom: .5px solid rgba(128, 128, 128, 0.49);
+
+    .left {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        .bigText {
+            font-size: 1.5rem;
+        }
+    }
+
+    .right {
+        button {
+            border: 0.5px solid rgba(128, 128, 128, 0.503);
+            outline: none;
+            height: 5%;
+            width: 100%;
+            border-radius: 10px;
+        }
+    }
+}
+
+.main{
+    width: 100%;
+    height: 90%;
+}

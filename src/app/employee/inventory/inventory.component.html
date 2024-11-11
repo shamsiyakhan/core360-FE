@@ -1,0 +1,67 @@
+<div class="mainContainer">
+    <div class="top">
+        <div class="left">
+            <span class="bigText">
+                Inventory
+            </span>
+            <span class="smallText">
+                View and manage all of your company’s inventory items. 
+            </span>
+        </div>
+
+        <div class="right">
+           <!--  <button (click)="addCategory()">Add Category</button> -->
+        </div>
+    </div>
+
+    <div class="mainSection">
+        <div class="leftMain">
+            <div class="categories">
+                <span class="Heading">
+                    Categories
+                </span>
+                <div *ngFor="let category of categories">
+                    <label>
+                      <input type="checkbox" style="cursor: pointer;" [(ngModel)]="category.selected" (change)="filterInventory()" />
+                      {{ category.categoryname }}
+                    </label>
+                  </div>
+            </div>
+        </div>
+        <div class="rightMain">
+            <div class="empty" style="
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        " *ngIf="inventory.length==0">
+                <img src="assets/noInventory.png" alt="">
+            </div>
+
+            <div class="inventory">
+                <div class="inventoryInfo" *ngFor="let data of inventory">
+                    <div class="top">
+                        <div class="left">
+                            <img src="assets/inventory.png" style="width: 50%;" alt="">
+                            <span>{{data?.inventname}}</span>
+                        </div>
+                        <div class="right" style="padding-left: 20px; padding-top: 20px;">
+                            <span style="color: gray; margin-left: auto;">₹{{data.price}}</span>
+                            <span style="padding-left: 2%;">Stock : {{data.stock}}</span>
+                            <span>Category : {{data.inventcategory}}</span>
+                        </div>
+                    </div>
+                   
+                    <div class="bottom">
+                        <i>{{data.details}}</i>
+                    </div>
+                    
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<!-- <button *ngIf="inventory.length>0" class="addInventory" (click)="addInventory()">Add Inventory</button> -->

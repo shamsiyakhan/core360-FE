@@ -47,3 +47,35 @@
     border-radius: 50px;
     padding: 10px 17px;
 }
+
+.profile {
+    position: absolute;
+    width: 11%;
+    height: 15%;
+    z-index: 999;
+    background-color: white;
+    box-shadow: 0 0 20px rgba(0, 0, 1, 0.175),
+        /* Horizontal glow */
+        0 0 20px rgba(53, 53, 54, 0.151);
+    right: -200px; /* Start off-screen */
+    top: 10%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding-top: 20px;
+    transition: right 2.5s ease; /* Add transition for the 'right' property */
+}
+
+.profile.profile-slide-in {
+    right: 34px; /* The target position when the div slides in */
+}
+
+.profile span:hover {
+    cursor: pointer;
+}
+.active{
+    font-weight: 700;
+    color: black;
+}

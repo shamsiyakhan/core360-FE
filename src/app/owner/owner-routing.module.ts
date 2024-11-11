@@ -4,6 +4,8 @@ import { OwnerComponent } from './owner/owner.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { TeamMemberComponent } from './team-member/team-member.component';
 import { TasksComponent } from './tasks/tasks.component';
+import { InventoryComponent } from './inventory/inventory.component';
+import { MarketingComponent } from './marketing/marketing.component';
 
 const routes: Routes = [
   {
@@ -20,6 +22,14 @@ const routes: Routes = [
       {
         path:"tasks",
         component:TasksComponent
+      },
+      {
+        path:'inventory',
+        component:InventoryComponent
+      },
+      {
+        path:"marketing",
+        component:MarketingComponent
       }
     ]
   }

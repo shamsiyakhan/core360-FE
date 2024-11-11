@@ -5,14 +5,14 @@
         <img src="assets/logo2.png" alt="">
         <span style="font-weight: 600; color: #000;">Manager Dashboard</span>
         <span (click)="inventory()" [ngClass]="{'active': isRouteActive('/inventory')}">Inventory</span>
-        <span>Marketing</span>
-        <span>TaskList</span>
+        <span (click)="marketing()" [ngClass]="{'active': isRouteActive('/marketing')}">Marketing</span>
+        <span (click)="tasks()" [ngClass]="{'active': isRouteActive('task')}">TaskList</span>
         <span (click)="team()" [ngClass]="{'active': isRouteActive('teams')}">Teams & Member</span>
     </div>
     <div class="rightSection">
         <i class="material-icons">message</i>
         <i class="material-icons">notifications</i>
-        <div class="border">
+        <div class="border" (click)="toggleProfile()">
             <i class="material-icons">menu</i>
             <i class="material-icons">person</i>
         </div>
@@ -20,7 +20,10 @@
 </div>
 
 <router-outlet></router-outlet>
-
+<div class="profile" *ngIf="profile" [ngClass]="{'profile-slide-in': profile}">
+    <span><i class="fas fa-user"></i> &nbsp;Profile</span>
+    <span (click)="logout()"><i class="fas fa-sign-out-alt"></i> &nbsp;Logout</span>
+</div>
 
 
 

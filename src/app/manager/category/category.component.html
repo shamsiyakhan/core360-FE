@@ -1,0 +1,11 @@
+<div class="container">
+    <div class="top">
+        <span style="font-size: 1.1rem;">Add Category</span>
+        <i class="fas fa-times close-icon" style="cursor: pointer;" (click)="close()"></i>
+    </div>
+    <form [formGroup]="addCategory" class="container" style="width: 100%;">
+
+        <input type="text" class="input" formControlName="categoryname" placeholder="Category Name">
+        <button (click)="addCategories()">Add category</button>
+    </form>
+</div>

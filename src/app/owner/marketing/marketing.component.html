@@ -1,0 +1,53 @@
+<div class="mainContainer">
+    <div class="top">
+        <div class="left">
+            <span class="bigText">
+                Marketing
+            </span>
+            <span class="smallText">
+               Track all your marketing clicks and conversion at one place
+            </span>
+        </div>
+
+        <div class="right">
+            <button (click)="addCampaign()">Add Campaign</button>
+        </div>
+    </div>
+
+    <div class="main">
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z1" style="margin-top: 2%;">
+
+            <!--- Note that these columns can be defined in any order.
+                  The actual rendered columns are set as a property on the row definition" -->
+          
+            <!-- Position Column -->
+            <ng-container matColumnDef="campaign_name">
+              <th mat-header-cell *matHeaderCellDef> Campaign Name </th>
+              <td mat-cell *matCellDef="let element"> {{element.campaign_name}} </td>
+            </ng-container>
+          
+            <!-- Name Column -->
+            <ng-container matColumnDef="clicks">
+              <th mat-header-cell *matHeaderCellDef> Clicks </th>
+              <td mat-cell *matCellDef="let element"> {{element.clicks}} </td>
+            </ng-container>
+          
+            <!-- Weight Column -->
+            <ng-container matColumnDef="conversion">
+              <th mat-header-cell *matHeaderCellDef> Conversion </th>
+              <td mat-cell *matCellDef="let element"> 
+                {{element.conversion}}
+              </td>
+            </ng-container>
+          
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="action">
+              <th mat-header-cell *matHeaderCellDef> Symbol </th>
+              <td mat-cell *matCellDef="let element"><i style="cursor: pointer;" class="fa fa-info" aria-hidden="true" (click)="showCampaignDetails(element)"></i></td>
+            </ng-container>
+          
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+    </div>
+</div>

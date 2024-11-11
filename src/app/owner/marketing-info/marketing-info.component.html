@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="section">
+      <h3>Clicks Tracking</h3>
+      <p>Copy this link and add it to your website when users visit to track the number of clicks.</p>
+      <div class="link-container">
+        <input type="text" [value]="'http://localhost:3000/trackClick/' + data.marketing_id" readonly #clicksLink />
+        <button (click)="copyLink(clicksLink)">Copy</button>
+      </div>
+      <p *ngIf="copySuccess === 'clicks'">Clicks link copied successfully!</p>
+    </div>
+  
+    <div class="section">
+      <h3>Conversions Tracking</h3>
+      <p>Copy this link and add it to your website when users click on your products to buy, to track the number of conversions.</p>
+      <div class="link-container">
+        <input type="text" [value]="'http://localhost:3000/trackConversion/' + data.marketing_id" readonly #conversionLink />
+        <button (click)="copyLink(conversionLink)">Copy</button>
+      </div>
+      <p *ngIf="copySuccess === 'conversion'">Conversions link copied successfully!</p>
+    </div>
+  </div>
+  
