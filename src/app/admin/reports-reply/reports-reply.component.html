@@ -1,0 +1,24 @@
+<div class="report-container">
+    <h2 class="report-title">{{ report.report_title }}</h2>
+  
+    <div class="report-info">
+      <p><strong>Reported On:</strong> {{ formatDate(report.reported_on) }}</p>
+      <p><strong>Status:</strong> {{ report.report_status }}</p>
+    </div>
+  
+    <div class="report-content">
+      <h4>Content:</h4>
+      <p>{{ report.report_content }}</p>
+    </div>
+  
+    <div class="text-editor-container">
+      <h4>Reply to the Report:</h4>
+      <form [formGroup]="resolvedForm">
+        <st-editor formControlName="reportReply"  [config]="config"></st-editor>
+      </form>
+     
+    </div>
+  
+    <button class="btn-report" (click)="submitReport()" >Submit Reply</button>
+  </div>
+  

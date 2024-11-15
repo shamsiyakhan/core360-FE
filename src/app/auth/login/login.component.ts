@@ -57,7 +57,7 @@ login()
     }else{
       Swal.fire({
         title: 'Failure!',
-        text: 'Invalid Credential',
+        text: dta.error,
         icon: 'warning',
         confirmButtonText: 'OK'
       });

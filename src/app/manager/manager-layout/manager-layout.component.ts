@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { ProfileComponent } from 'src/app/profile/profile.component';
+import { ReportIssueComponent } from 'src/app/report-issue/report-issue.component';
 
 @Component({
   selector: 'app-manager-layout',
@@ -9,7 +12,10 @@ import { Router } from '@angular/router';
 export class ManagerLayoutComponent {
   currentRoute: string = '';
   profile=false
-constructor(private route:Router){}
+constructor(
+  private route:Router,
+  private dialog:MatDialog
+){}
 
 team(){
   this.route.navigate(['manager/teams'])
@@ -42,6 +48,19 @@ tasks(){
 logout(){
   localStorage.clear()
   this.route.navigate(['auth' , 'login'])
+}
+
+profileInfo(){
+  console.warn("profile opened")
+  this.dialog.open(ProfileComponent , {
+    width:"500px"
+  })
+}
+
+report(){
+  this.dialog.open(ReportIssueComponent , {
+    width:"500px"
+  })
 }
 
 }

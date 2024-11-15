@@ -1,0 +1,44 @@
+<div class="container">
+    <h2 class="heading">Update User Data</h2>
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" formControlName="username" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" formControlName="email" class="form-control" [disabled]="true" />
+      </div>
+      <div class="form-group password-group">
+        <label for="password">Password</label>
+        <div class="password-wrapper">
+          <input [type]="passwordFieldType" id="password" formControlName="password" class="form-control" />
+          <button type="button" class="password-toggle" (click)="togglePasswordVisibility()">
+            <i [ngClass]="passwordFieldType === 'password' ? 'fa fa-eye' : 'fa fa-eye-slash'"></i>
+          </button>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="phonenumber">Phone Number</label>
+        <input type="text" id="phonenumber" formControlName="phonenumber" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label for="address">Address</label>
+        <input type="text" id="address" formControlName="address" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label for="gender">Gender</label>
+        <select id="gender" formControlName="gender" class="form-control">
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="dob">Date of Birth</label>
+        <input type="date" id="dob" formControlName="dob" class="form-control" />
+      </div>
+      <button type="submit" class="update-btn" (click)="update()" >Update Info</button>
+    </form>
+  </div>
+  

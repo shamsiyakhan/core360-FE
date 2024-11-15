@@ -10,6 +10,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./admin-login.component.scss']
 })
 export class AdminLoginComponent {
+  passwordVisible: boolean = false;
   constructor(
     private fareehahttp:HttpClient, 
     private fb:FormBuilder,
@@ -22,30 +23,25 @@ export class AdminLoginComponent {
   })
 login()
 {
-  const encrypt=window.btoa(String(this.loginform.controls['password'].value))
-  this.loginform.patchValue({
+  const password=this.loginform.controls['password'].value
+  console.warn(password)
+  const encrypt=window.btoa(String(password))
+
+
+  const data={
+    email:this.loginform.controls['email'].value,
     password:encrypt
-  })
+  }
   console.warn("function called")
-  this.fareehahttp.post("http://localhost:3000/login", this.loginform.value).subscribe((dta:any)=>{
+
+  this.fareehahttp.post("http://localhost:3000/admin-login", data).subscribe((dta:any)=>{
     console.warn(dta)
     if(dta.data){
       this.loginform.reset()
-      Swal.fire({
-        title: 'Success!',
-        text: 'Login Successful',
-        icon: 'success',
-        confirmButtonText: 'OK'
-      });
-      localStorage.setItem('orgId' , dta.data.orgid)
+      localStorage.setItem("jwt" , dta.data.jwt)
+
       localStorage.setItem('userid' , dta.data.userid)
-      if(dta.data.roleid==101){
-        this.router.navigate(['owner' , 'dashboard'])
-      }else if(dta.data.roleid==102){
-        this.router.navigate(['manager' , 'dashboard'])
-      }else if(dta.data.roleid==103){
-        this.router.navigate(['employee' , 'dashboard'])
-      }
+      this.router.navigate(['/admin' ,'dashboard'])
     }else{
       Swal.fire({
         title: 'Failure!',
@@ -56,4 +52,13 @@ login()
     }
   })
 }
+forgot(){
+  this.router.navigate(['auth' , 'forgot'])
+
 }
+
+togglePasswordVisibility() {
+  this.passwordVisible = !this.passwordVisible;
+}
+}
+

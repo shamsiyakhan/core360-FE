@@ -1,0 +1,23 @@
+<div class="header">
+    <div class="leftSection">
+        <img src="assets/logo2.png" alt="">
+        <span (click)="dashboard()" [ngClass]="{'active': isRouteActive('/dashboard')}" style="font-weight: 600; color: #000;">Admin Dashboard</span>
+        <span (click)="Organizations()" [ngClass]="{'active': isRouteActive('/organizations')}">Organizations</span>
+        <span (click)="reports()" [ngClass]="{'active': isRouteActive('/reports')}">Reports</span>
+    </div>
+    <div class="rightSection">
+        <i class="material-icons">message</i>
+        <i class="material-icons">notifications</i>
+        <div class="border" (click)="toggleProfile()">
+            <i class="material-icons">menu</i>
+            <i class="material-icons">person</i>
+        </div>
+    </div>
+</div>
+
+<router-outlet></router-outlet>
+
+<div class="profile" *ngIf="profile" [ngClass]="{'profile-slide-in': profile}">
+    <span (click)="profileInfo()" ><i class="fas fa-user" ></i> &nbsp;Profile</span>
+    <span (click)="logout()"><i class="fas fa-sign-out-alt"></i> &nbsp;Logout</span>
+</div>

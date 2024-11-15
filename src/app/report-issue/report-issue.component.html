@@ -1,0 +1,21 @@
+<div class="form-container">
+    <h1>Report Issue</h1>
+    <form [formGroup]="reportForm" (ngSubmit)="reportIssue()">
+      <div class="form-group">
+        <label for="title">Title of Report</label>
+        <input type="text" id="title" class="form-control" formControlName="report_title" placeholder="Enter report title">
+        <div *ngIf="reportForm.get('report_title')?.invalid && reportForm.get('report_title')?.touched" class="error">
+          Title is required and must be at least 3 characters.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="content">Content of Report</label>
+        <textarea id="content" class="form-control" formControlName="report_content" placeholder="Enter report content" rows="6"></textarea>
+        <div *ngIf="reportForm.get('report_content')?.invalid && reportForm.get('report_content')?.touched" class="error">
+          Content is required and must be at least 10 characters.
+        </div>
+      </div>
+      <button type="submit" class="btn-submit" [disabled]="reportForm.invalid">Submit Report</button>
+    </form>
+  </div>
+  

@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { NavigationEnd, Router } from '@angular/router';
+import { ProfileComponent } from 'src/app/profile/profile.component';
+import { ReportIssueComponent } from 'src/app/report-issue/report-issue.component';
 
 @Component({
   selector: 'app-emp',
@@ -9,7 +12,10 @@ import { NavigationEnd, Router } from '@angular/router';
 export class EmpComponent {
   profile=false
   currentRoute: string = '';
-  constructor(private route:Router){}
+  constructor(
+    private route:Router,
+    private dialog:MatDialog
+  ){}
 
   ngOnInit(): void {
     // Subscribe to router events to detect the current route
@@ -55,5 +61,18 @@ inventory(){
 logout(){
   localStorage.clear()
   this.route.navigate(['auth' , 'login'])
+}
+
+profileInfo(){
+  console.warn("profile opened")
+  this.dialog.open(ProfileComponent , {
+    width:"500px"
+  })
+}
+
+report(){
+  this.dialog.open(ReportIssueComponent , {
+    width:"500px"
+  })
 }
 }

@@ -1,0 +1,58 @@
+<div class="wrapper">
+    <span style="font-size: 1.2rem; font-weight: 700;">Organization</span>
+    <span>List Of All Organization on Core360</span>
+
+            <div class="teams">
+                <table mat-table [dataSource]="dataSource" class="mat-elevation-z0">
+  
+                    <!--- Note that these columns can be defined in any order.
+                          The actual rendered columns are set as a property on the row definition" -->
+                  
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="orgname">
+                      <th mat-header-cell *matHeaderCellDef> Orhganization Name </th>
+                      <td mat-cell *matCellDef="let element"> {{element.orgname}} </td>
+                    </ng-container>
+                  
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="orgaddress">
+                      <th mat-header-cell *matHeaderCellDef> Address </th>
+                      <td mat-cell *matCellDef="let element"> {{element.orgaddress}} </td>
+                    </ng-container>
+                  
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="orgmail">
+                      <th mat-header-cell *matHeaderCellDef> Email </th>
+                      <td mat-cell *matCellDef="let element"> 
+                        {{element.orgmail}}
+                      </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="orgnumber">
+                        <th mat-header-cell *matHeaderCellDef>Contact Number </th>
+                        <td mat-cell *matCellDef="let element"> 
+                          {{element.orgnumber}}
+                        </td>
+                      </ng-container>
+                  
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="action">
+                      <th mat-header-cell *matHeaderCellDef> Symbol </th>
+                      <td mat-cell *matCellDef="let element">
+                        <button (click)="getMembers(element.orgid)">Members</button>
+                        <i style="color: red; cursor: pointer;" class="fa fa-trash" aria-hidden="true" (click)="deleteTeam(element)"></i>
+                        <i style="color: green; cursor: pointer; margin-left: 10px;" class="fa fa-check" aria-hidden="true" (click)="unRestrictorganization(element.orgid)" *ngIf="element.status=='Deactivated'"></i>
+                        <i style="color: red; cursor: pointer; margin-left: 10px;" class="fa fa-ban" aria-hidden="true" (click)="Restrictorganization(element.orgid)" *ngIf="element.status=='active'"></i>
+                    </td>
+                    </ng-container>
+                  
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                  </table>
+                  
+                  
+            </div>
+
+  </div>
+  
+  

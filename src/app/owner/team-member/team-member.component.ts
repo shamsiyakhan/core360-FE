@@ -1,8 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import Swal from 'sweetalert2';
+import { UpdateProfileComponent } from '../update-profile/update-profile.component';
 export interface PeriodicElement {
   name: string;
   position: number;
@@ -32,7 +34,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
 export class TeamMemberComponent implements OnInit {
   displayedColumns: string[] = ['teamname', 'teaminfo', 'users', 'action'];
 
-  displayedColumnsMember: string[] = ['email', 'phonenumber', 'address', 'status'];
+  displayedColumnsMember: string[] = ['email', 'phonenumber', 'address', 'status' , 'action'];
   dataSource = [];
   dataSource1: any
   selectedTab = 0
@@ -49,7 +51,8 @@ export class TeamMemberComponent implements OnInit {
   ]
   constructor(
     private fb: FormBuilder,
-    private http: HttpClient
+    private http: HttpClient,
+    private dialog:MatDialog
   ) {
 
 
@@ -91,6 +94,16 @@ export class TeamMemberComponent implements OnInit {
     orgid:['']
   })
 
+  edit(data:any){
+   const dialogRef= this.dialog.open(UpdateProfileComponent , {
+      width:"500px",
+      data:data
+    })
+    dialogRef.afterClosed().subscribe(()=>{
+      this.getOrganization()
+    })
+
+  }
 
   getOrganization() {
     this.http.get('http://localhost:3000/getorgPeople/' + localStorage.getItem('orgId')).subscribe((resp: any) => {
@@ -170,7 +183,44 @@ export class TeamMemberComponent implements OnInit {
   addMembersPage() {
     this.add = true
   }
+  deleteuser(userid:any){
+    Swal.fire({
+      title: 'Are you sure to delete User?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // If confirmed, make the HTTP request to delete the team
+        this.http.delete('http://localhost:3000/user/'+userid).subscribe((resp:any)=>{
+          if(resp.data){
+            Swal.fire({
+              title: 'Success',
+              text: 'Deleted Succesfully',
+              icon: 'success',
+              confirmButtonText: 'OK'
+            });
+            this.getTeam()
+            this.getOrganization()
+          }
+        })
+      }
+    });
+  }
 
+  showActions(id:any){
+
+    if(localStorage.getItem('userid')==id) {
+      return false
+    }else{
+      return true
+    } 
+
+  }
+  
   deleteTeam(teamid:any){
     
     Swal.fire({

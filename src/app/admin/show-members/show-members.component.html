@@ -1,0 +1,38 @@
+<div class="user-table-container">
+    <table class="user-table">
+      <thead>
+        <tr>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Phone Number</th>
+          <th>Address</th>
+          <th>Gender</th>
+          <th>Date of Birth</th>
+          <th>Role Type</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td>{{ user.username }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.phonenumber }}</td>
+          <td>{{ user.address }}</td>
+          <td>{{ user.gender || 'N/A' }}</td>
+          <td>{{ user.dob | date: 'yyyy-MM-dd' }}</td>
+        
+          <td>
+            <span [ngClass]="{
+                'role-owner': user.roleid === 101,
+                'role-manager': user.roleid === 102,
+                'role-employee': user.roleid === 103
+              }">
+              {{ getRoleType(user.roleid) }}
+            </span>
+          </td>
+          <td>{{ user.status}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

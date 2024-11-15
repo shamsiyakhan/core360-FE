@@ -9,12 +9,16 @@ import { HttpClientModule } from '@angular/common/http';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { InterceptService } from './intercept.service';
 import { ErrorInterceptorService } from './error-interceptor.service';
+import { ProfileComponent } from './profile/profile.component';
+import { ReportIssueComponent } from './report-issue/report-issue.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     TestComponent,
+    ProfileComponent,
+    ReportIssueComponent,
 
   ],
   imports: [

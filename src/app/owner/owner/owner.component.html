@@ -20,6 +20,8 @@
 <router-outlet></router-outlet>
 
 <div class="profile" *ngIf="profile" [ngClass]="{'profile-slide-in': profile}">
-    <span><i class="fas fa-user"></i> &nbsp;Profile</span>
+    <span (click)="profileInfo()" ><i class="fas fa-user"></i> &nbsp;Profile</span>
+    <span (click)="report()"><i class="fas fa-exclamation-triangle"  style="color: red;"></i> &nbsp;Report Issue</span>
+
     <span (click)="logout()"><i class="fas fa-sign-out-alt"></i> &nbsp;Logout</span>
 </div>

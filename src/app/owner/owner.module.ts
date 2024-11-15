@@ -19,6 +19,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MarketingComponent } from './marketing/marketing.component';
 import { AddmarketingComponent } from './addmarketing/addmarketing.component';
 import { MarketingInfoComponent } from './marketing-info/marketing-info.component';
+import { UpdateProfileComponent } from './update-profile/update-profile.component';
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -31,7 +32,8 @@ import { MarketingInfoComponent } from './marketing-info/marketing-info.componen
     InventoryComponent,
     MarketingComponent,
     AddmarketingComponent,
-    MarketingInfoComponent
+    MarketingInfoComponent,
+    UpdateProfileComponent
   ],
   imports: [
     CommonModule,

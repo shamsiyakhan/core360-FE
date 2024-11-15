@@ -1,0 +1,50 @@
+<div class="wrapper">
+    <span style="font-size: 1.2rem; font-weight: 700;">Reports</span>
+    <span>List Of All Reports Reported on Core360</span>
+
+            <div class="teams">
+                <table mat-table [dataSource]="dataSource" class="mat-elevation-z0">
+  
+                    <!--- Note that these columns can be defined in any order.
+                          The actual rendered columns are set as a property on the row definition" -->
+                  
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="report_title">
+                      <th mat-header-cell *matHeaderCellDef> Report Title </th>
+                      <td mat-cell *matCellDef="let element"> {{element.report_title}} </td>
+                    </ng-container>
+                  
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="report_status">
+                      <th mat-header-cell *matHeaderCellDef> Report Status </th>
+                      <td mat-cell *matCellDef="let element"> {{element.report_status}} </td>
+                    </ng-container>
+                  
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="reported_on">
+                      <th mat-header-cell *matHeaderCellDef> Reported On </th>
+                      <td mat-cell *matCellDef="let element"> 
+                        {{element.reported_on | date: 'yyyy-MM-dd' }}
+                      </td>
+                    </ng-container>
+
+                  
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="action">
+                      <th mat-header-cell *matHeaderCellDef> Action </th>
+                      <td mat-cell *matCellDef="let element">
+                        <i style="cursor: pointer;" class="fa fa-arrow-right" aria-hidden="true" (click)="showReport(element.report_id)" *ngIf="element.report_status!='Resolved'"></i>
+                      
+                    </td>
+                    </ng-container>
+                  
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                  </table>
+                  
+                  
+            </div>
+
+  </div>
+  
+  

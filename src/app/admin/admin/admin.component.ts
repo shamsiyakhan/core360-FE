@@ -2,14 +2,13 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ProfileComponent } from 'src/app/profile/profile.component';
-import { ReportIssueComponent } from 'src/app/report-issue/report-issue.component';
 
 @Component({
-  selector: 'app-owner',
-  templateUrl: './owner.component.html',
-  styleUrls: ['./owner.component.scss']
+  selector: 'app-admin',
+  templateUrl: './admin.component.html',
+  styleUrls: ['./admin.component.scss']
 })
-export class OwnerComponent {
+export class AdminComponent {
   profile=false
   constructor(
     private router:Router,
@@ -48,16 +47,18 @@ export class OwnerComponent {
   }
 
   dashboard(){
-    this.router.navigate(['owner' , 'dashboard'])
+    this.router.navigate(['admin' , 'dashboard'])
   }
   marketing(){
     this.router.navigate(['owner' , 'marketing'])
   }
 
-  report(){
-    this.dialog.open(ReportIssueComponent , {
-      width:"500px"
-    })
+  Organizations(){
+    this.router.navigate(['admin' , 'organizations'])
+  }
+
+  reports(){
+    this.router.navigate(['admin' , 'reports'])
   }
 
   logout(){
