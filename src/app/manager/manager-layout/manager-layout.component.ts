@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { ApirtcService } from 'src/app/apirtc.service';
 import { ProfileComponent } from 'src/app/profile/profile.component';
 import { ReportIssueComponent } from 'src/app/report-issue/report-issue.component';
 
@@ -12,10 +13,18 @@ import { ReportIssueComponent } from 'src/app/report-issue/report-issue.componen
 export class ManagerLayoutComponent {
   currentRoute: string = '';
   profile=false
+  showMsgIcon=false
 constructor(
   private route:Router,
-  private dialog:MatDialog
-){}
+  private dialog:MatDialog,
+  private apirtc:ApirtcService
+){
+  apirtc.newMessage.subscribe(()=>{
+    if(!route.url.includes('/messages')){
+      this.showMsgIcon=true
+    }
+  })
+}
 
 team(){
   this.route.navigate(['manager/teams'])
@@ -63,4 +72,13 @@ report(){
   })
 }
 
+
+message(){
+  this.showMsgIcon=false
+  this.route.navigate(['manager','messages'])
+}
+dashboard()
+{
+  this.route.navigate(['manager','dashboard'])
+}
 }

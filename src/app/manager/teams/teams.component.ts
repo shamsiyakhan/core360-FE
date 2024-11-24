@@ -66,6 +66,7 @@ export class TeamsComponent implements OnInit {
       userid:localStorage.getItem('userid'),
       orgid:localStorage.getItem('orgId')
     })
+    this.getassigntask()
   }
 
   onTabChange(event: MatTabChangeEvent) {
@@ -204,5 +205,10 @@ export class TeamsComponent implements OnInit {
     this.add = false
   }
 
-
+getassigntask(){
+    const userid=localStorage.getItem('userid')
+    this.http.get('http://localhost:3000/gettasks/'+userid).subscribe(res=>{
+      console.warn(res)
+    })
+}
 }

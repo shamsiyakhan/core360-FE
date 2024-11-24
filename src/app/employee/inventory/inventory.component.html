@@ -63,5 +63,13 @@
         </div>
     </div>
 </div>
+<div class="file-upload-container">
+    <label class="custom-file-upload">
+      <input type="file" (change)="onFileChange($event)" />
+      Select File
+    </label>
+    <button class="upload-button" *ngIf="parsedData.length > 0" (click)="uploadData()">Upload</button>
+  </div>
+  
 
 <!-- <button *ngIf="inventory.length>0" class="addInventory" (click)="addInventory()">Add Inventory</button> -->

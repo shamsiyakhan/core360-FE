@@ -64,4 +64,23 @@
     </div>
 </div>
 
-<button *ngIf="inventory.length>0" class="addInventory" (click)="addInventory()">Add Inventory</button>
+
+<div class="addInvent">
+    <button  class="addInventory" (click)="bulkInvent()">Add Bulk Inventory</button>
+    <button class="addInventory" (click)="addInventory()">Add Inventory</button>
+</div>
+
+<div class="BulkUpload1" *ngIf="bulkUpload">
+    <i class="fas fa-times close-icon" style="cursor: pointer; margin-left: auto;"></i>
+    <div class="BulkUpload">
+        <div class="file-upload-container">
+            <label class="custom-file-upload">
+              <input type="file" (change)="onFileChange($event)" />
+              Select File
+            </label>
+            <button class="upload-button" *ngIf="parsedData.length > 0" (click)="uploadData()">Upload</button>
+          </div>
+    </div>
+    
+    
+</div>

@@ -1,0 +1,46 @@
+<div class="chat-container">
+    <!-- Sidebar: User List -->
+    <div class="sidebar">
+      <div 
+        *ngFor="let user of users" 
+        class="user-card" 
+        [class.selected]="selectedUser === user" 
+        (click)="selectUser(user)"
+      >
+        <div class="avatar">{{ user.username.charAt(0).toUpperCase() }}</div>
+        <div class="user-info">
+          <div class="user-name">{{ user.username }}</div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Chat Section -->
+    <div class="chat-window" *ngIf="selectedUser">
+      <div class="chat-header">
+        <div class="header-info">
+          <div class="header-avatar">{{ selectedUser.username.charAt(0).toUpperCase() }}</div>
+          <div class="header-name">{{ selectedUser.username }}</div>
+        </div>
+      </div>
+  
+      <div class="chat-body">
+        <div 
+          *ngFor="let message of specificMessage" 
+          [class.sent]="message.me === true" 
+          [class.received]="message.me === false" 
+          class="message">
+          {{ message.mssg }}
+        </div>
+      </div>
+  
+      <div class="chat-footer">
+        <input 
+          type="text" 
+          [(ngModel)]="newMessage" 
+          placeholder="Write a message..." 
+          (keyup.enter)="sendMessage()" 
+        />
+      </div>
+    </div>
+  </div>
+  

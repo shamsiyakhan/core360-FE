@@ -4,7 +4,7 @@ import { AddInventoryComponent } from '../add-inventory/add-inventory.component'
 import { CategoryComponent } from '../category/category.component';
 import { HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
-
+import * as XLSX from 'xlsx';
 @Component({
   selector: 'app-inventory',
   templateUrl: './inventory.component.html',
@@ -14,6 +14,7 @@ export class InventoryComponent implements OnInit {
   categories:any
   inventory:any[]=[]
   inventoryCopy:any[]=[]
+  parsedData: any[] = [];
   constructor(
     private http:HttpClient,
     private dialog:MatDialog
@@ -89,6 +90,31 @@ export class InventoryComponent implements OnInit {
       this.getInventory()
       this.getCategories()
     })
+  }
+
+  onFileChange(event: any) {
+    console.warn("file changed called")
+    const file = event.target.files[0];
+    if (file) {
+      const reader: FileReader = new FileReader();
+      reader.onload = (e: any) => {
+        const binaryStr = e.target.result;
+        const workbook: XLSX.WorkBook = XLSX.read(binaryStr, { type: 'binary' });
+        const worksheet = workbook.Sheets[workbook.SheetNames[0]];
+        this.parsedData = XLSX.utils.sheet_to_json(worksheet);
+        console.log(this.parsedData);
+      };
+      reader.readAsBinaryString(file);
+    }
+  }
+
+  uploadData() {
+    /* this.http.post('http://localhost:3000/addbulkinventory', { data: this.parsedData })
+      .subscribe(
+        response => console.log('Upload successful:', response),
+        error => console.error('Upload failed:', error)
+      ); */
+      console.warn(this.parsedData)
   }
 
 }

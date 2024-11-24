@@ -84,3 +84,16 @@
     font-weight: 700;
     color: black;
 }
+
+.message{
+    position: relative;
+    .newMessage{
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: red;
+        top: 0px;
+        right: 0px;
+    }
+}

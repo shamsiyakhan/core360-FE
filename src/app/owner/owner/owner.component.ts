@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { ApirtcService } from 'src/app/apirtc.service';
 import { ProfileComponent } from 'src/app/profile/profile.component';
 import { ReportIssueComponent } from 'src/app/report-issue/report-issue.component';
 
@@ -11,10 +12,19 @@ import { ReportIssueComponent } from 'src/app/report-issue/report-issue.componen
 })
 export class OwnerComponent {
   profile=false
+  showMsgIcon=false
   constructor(
     private router:Router,
-    private dialog:MatDialog
-  ){}
+    private dialog:MatDialog,
+    private apirtc:ApirtcService
+  ){
+    apirtc.newMessage.subscribe(()=>{
+      if(!router.url.includes('/messages')){
+        this.showMsgIcon=true
+      }
+    })
+
+  }
 
   teamsmember(){
     this.router.navigate(['owner' , 'team-member'])
@@ -58,6 +68,11 @@ export class OwnerComponent {
     this.dialog.open(ReportIssueComponent , {
       width:"500px"
     })
+  }
+
+  message(){
+    this.showMsgIcon=false
+    this.router.navigate(['owner' , 'messages'])
   }
 
   logout(){

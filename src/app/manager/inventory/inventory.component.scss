@@ -103,15 +103,83 @@
         }
     }
 }
-.addInventory{
+
+.addInvent{
     position: absolute;
     bottom: 20px;
     right: 10px;
+    display: flex;
+    width: 40%;
+    justify-content: space-around;
+    height: 4%;
+}
+.addInventory{
+   
     border: none;
     outline: none;
-    height: 4%;
-    width: 10%;
+    height: 100%;
+    width: 45%;
     background: linear-gradient(90deg, #004D4F, #138E91);
     border-radius: 10px;
     color: white;
 }
+
+.file-upload-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .custom-file-upload {
+    display: inline-block;
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #486bff;
+    color: #fff;
+    border-radius: 5px;
+    border: 2px solid transparent;
+    transition: background-color 0.3s, border-color 0.3s;
+  }
+  
+  .custom-file-upload:hover {
+    background-color: #3458b8;
+    border-color: #2d4aa3;
+  }
+  
+  .custom-file-upload input[type="file"] {
+    display: none;
+  }
+  
+  .upload-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .upload-button:hover {
+    background-color: #218838;
+  }
+  
+  .upload-button:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+  }
+  
+  .BulkUpload{
+    position: absolute;
+    top: 40%;
+    right: 5%;
+    height: 200px;
+    width: 200px;
+    background-color: #6c757d24;
+    border-radius: 10px;
+    display: flex
+;
+    align-items: center;
+    justify-content: center;
+  }

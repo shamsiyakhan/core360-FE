@@ -11,7 +11,8 @@ import { InterceptService } from './intercept.service';
 import { ErrorInterceptorService } from './error-interceptor.service';
 import { ProfileComponent } from './profile/profile.component';
 import { ReportIssueComponent } from './report-issue/report-issue.component';
-
+import { MessagingComponent } from './messaging/messaging.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { ReportIssueComponent } from './report-issue/report-issue.component';
     TestComponent,
     ProfileComponent,
     ReportIssueComponent,
+    MessagingComponent,
 
   ],
   imports: [
@@ -26,7 +28,8 @@ import { ReportIssueComponent } from './report-issue/report-issue.component';
     AppRoutingModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [
     {

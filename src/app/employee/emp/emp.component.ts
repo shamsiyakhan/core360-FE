@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { NavigationEnd, Router } from '@angular/router';
+import { ApirtcService } from 'src/app/apirtc.service';
 import { ProfileComponent } from 'src/app/profile/profile.component';
 import { ReportIssueComponent } from 'src/app/report-issue/report-issue.component';
 
@@ -12,10 +13,18 @@ import { ReportIssueComponent } from 'src/app/report-issue/report-issue.componen
 export class EmpComponent {
   profile=false
   currentRoute: string = '';
+  showMsgIcon=false
   constructor(
     private route:Router,
-    private dialog:MatDialog
-  ){}
+    private dialog:MatDialog,
+    private apirtc:ApirtcService
+  ){
+    apirtc.newMessage.subscribe(()=>{
+      if(!route.url.includes('/messages')){
+        this.showMsgIcon=true
+      }
+    })
+  }
 
   ngOnInit(): void {
     // Subscribe to router events to detect the current route
@@ -68,6 +77,11 @@ profileInfo(){
   this.dialog.open(ProfileComponent , {
     width:"500px"
   })
+}
+
+message(){
+  this.showMsgIcon=false
+  this.route.navigate(['employee','messages'])
 }
 
 report(){

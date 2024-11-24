@@ -8,7 +8,7 @@
         <span (click)="teamsmember()"  [ngClass]="{'active': isRouteActive('/team-member')}">Teams & Member</span>
     </div>
     <div class="rightSection">
-        <i class="material-icons">message</i>
+        <div class="message"><span *ngIf="showMsgIcon" class="newMessage"></span><i class="material-icons" (click)="message()">message</i></div>
         <i class="material-icons">notifications</i>
         <div class="border" (click)="toggleProfile()">
             <i class="material-icons">menu</i>
