@@ -56,7 +56,7 @@
             </div>
         </div>
     </div>
-    <div class="right col-10" >
+    <div class="right col-10">
         <div class="row mt-2">
             <div class="col-12">
                 <input type="text" placeholder="Search.."
@@ -64,44 +64,110 @@
                     (input)="searchTasks($any($event.target).value)" />
             </div>
         </div>
-        <div class="mainRight" *ngIf="allTask.length>0">
-            <div class="tasks" *ngFor="let task of allTask">
-                <div *ngIf="task.taskStatus=='Open'">
-                    <img src="assets/round.png" alt=""> <span style="margin-left: 10px;">{{task.taskStatus}}</span>
-                    <div class="actionBtn">
-                        <i class="fas fa-play" style="color: green; cursor: pointer;" (click)="startTask(task.taskId)"></i>
+        <div class="mainRight1">
+            <mat-tab-group (selectedTabChange)="onTabChange($event)">
+                <mat-tab label="My Tasks" >
+                    <div class="mainRight"  *ngIf="allTask.length>0">
+                        <div class="tasks" *ngFor="let task of allTask">
+                            <div *ngIf="task.taskStatus=='Open'">
+                                <img src="assets/round.png" alt=""> <span
+                                    style="margin-left: 10px;">{{task.taskStatus}}</span>
+                                <div class="actionBtn">
+                                    <i class="fas fa-play" style="color: green; cursor: pointer;"
+                                        (click)="startTask(task.taskId)"></i>
+                                    <span style="color: red; cursor: pointer;" (click)="extend(task.taskId)">Extend
+                                        Deadline</span>
+                                </div>
+                            </div>
+    
+                            <div *ngIf="task.taskStatus=='In Progress'">
+                                <img src="assets/blueround.png" alt=""> <span
+                                    style="margin-left: 10px;">{{task.taskStatus}}</span>
+                                <div class="actionBtn">
+                                    <i *ngIf="!task.progressStatus" class="fas fa-play"
+                                        style="color: green;  cursor: pointer;" (click)="startTask(task.taskId)"></i>
+                                    <i *ngIf="task.progressStatus" class="fas fa-pause"
+                                        style="color: red;  cursor: pointer;" (click)="stoptask(task.taskId)"></i>
+    
+                                    <i class="fas fa-check" style="color: green;  cursor: pointer;"
+                                        (click)="completetask(task.taskId)"></i>
+                                    <span style="color: red; cursor: pointer;" (click)="extend(task.taskId)">Extend
+                                        Deadline</span>
+    
+                                </div>
+                            </div>
+    
+                            <div *ngIf="task.taskStatus=='Completed'">
+                                <img src="assets/completeround.png" alt=""> <span
+                                    style="margin-left: 10px;">{{task.taskStatus}}</span>
+    
+                            </div>
+                            <div class="taskDetails">
+                                <span> {{task.taskName}}</span>
+                                <span>Deadline: {{ task.deadline | date: 'yyyy:dd:MM' }}</span>
+                                <span>Assigned To: {{task?.userDetails.userName}}</span>
+                                <span>Assigned By: {{task?.assignedBy.userName}}</span>
+                            </div>
+    
+    
+                        </div>
                     </div>
-                </div>
+                
 
-                <div *ngIf="task.taskStatus=='In Progress'">
-                    <img src="assets/blueround.png" alt=""> <span style="margin-left: 10px;">{{task.taskStatus}}</span>
-                    <div class="actionBtn">
-                        <i *ngIf="!task.progressStatus" class="fas fa-play" style="color: green;  cursor: pointer;" (click)="startTask(task.taskId)"></i>
-                        <i *ngIf="task.progressStatus" class="fas fa-pause" style="color: red;  cursor: pointer;" (click)="stoptask(task.taskId)"></i>
-                        <i class="fas fa-check" style="color: green;  cursor: pointer;" (click)="completetask(task.taskId)"></i>
-
+                    <div class="mainRight" *ngIf="allTask.length < 1"
+                        style="display: flex; align-items: center; justify-content: center; height: 100%; width: 100%;">
+                        <img src="assets/notask.png" alt="cannot" style="width: 50%; height: 60%;">
                     </div>
-                </div>
+                </mat-tab>
 
-                <div *ngIf="task.taskStatus=='Completed'">
-                    <img src="assets/completeround.png" alt=""> <span style="margin-left: 10px;">{{task.taskStatus}}</span>
-                    
-                </div>
-                <div class="taskDetails">
-                    <span> {{task.taskName}}</span>
-                    <span>Deadline: {{ task.deadline | date: 'yyyy:dd:MM' }}</span>
-                    <span>Assigned To: {{task?.userDetails.userName}}</span>
-                    <span>Assigned By: {{task?.assignedBy.userName}}</span>
-                </div>
+                <mat-tab label="Request Status">
+                    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
+                        <!--- Note that these columns can be defined in any order.
+                              The actual rendered columns are set as a property on the row definition" -->
+                      
+                        <!-- Position Column -->
+                        <ng-container matColumnDef="taskname">
+                          <th mat-header-cell *matHeaderCellDef> Task Name </th>
+                          <td mat-cell *matCellDef="let element"> {{element?.taskname}} </td>
+                        </ng-container>
+                      
+                        <!-- Name Column -->
+                        <ng-container matColumnDef="request_addedAt">
+                          <th mat-header-cell *matHeaderCellDef> Request Added At </th>
+                          <td mat-cell *matCellDef="let element"> {{element?.request_addedAt | date:'yyyy-MM-dd'}} </td>
+                        </ng-container>
+                      
+                        <!-- Weight Column -->
+                        <ng-container matColumnDef="deadline">
+                          <th mat-header-cell *matHeaderCellDef> Requested Deadline Date </th>
+                          <td mat-cell *matCellDef="let element"> {{element?.deadline | date:'yyyy-MM-dd'}} </td>
+                        </ng-container>
 
-            </div>
+                        <ng-container matColumnDef="task_deadline">
+                            <th mat-header-cell *matHeaderCellDef> Deadline Of Task </th>
+                            <td mat-cell *matCellDef="let element"> {{element?.task_deadline | date:'yyyy-MM-dd'}} </td>
+                          </ng-container>
+                      
+                        <!-- Symbol Column -->
+                        <ng-container matColumnDef="status">
+                          <th mat-header-cell *matHeaderCellDef> Status </th>
+                          <td mat-cell *matCellDef="let element"> {{element?.status}} </td>
+                           
+                        
+                        
+                        </ng-container>
+                      
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                      </table>
+                </mat-tab>
+            </mat-tab-group>
+
         </div>
 
-        <div class="mainRight" *ngIf="allTask.length < 1" style="display: flex; align-items: center; justify-content: center; height: 100%; width: 100%;">
-            <img src="assets/notask.png" alt="cannot" style="width: 50%; height: 60%;">
-          </div>
+
     </div>
 
- 
+
 </div>

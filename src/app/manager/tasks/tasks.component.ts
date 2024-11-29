@@ -15,7 +15,8 @@ export class TasksComponent implements OnInit {
   allTaskCopy:any
   tasks: string[] = ['All Tasks', 'Today', 'Tomorrow', 'This Week', 'This Month', 'Open', 'In Progress', 'Past Due'];
   selectedTask: string | null = null;
-
+  displayedColumns: string[] = ['name', 'email', 'message', 'deadline' , 'action'];
+  dataSource = [];
   highlightTask(task: string): void {
     this.selectedTask = task;
     console.warn(task)
@@ -41,6 +42,80 @@ export class TasksComponent implements OnInit {
   allTasks(){
     this.allTask=this.allTaskCopy
   }
+
+  getRequests(){
+    this.http.get(`http://localhost:3000/getMyRequest/${localStorage.getItem('userid')}`).subscribe((res:any)=>{
+      console.warn(res)
+    })
+  }
+
+  onTabChange(event:any){
+    console.warn(event.index)
+
+    if(event.index==0){
+      this.getAllTasks()
+    }else if(event.index==1){
+      this.getAllTasksAssignedbyMe()
+    }else if(event.index==2){
+      this.request()
+    }
+  }
+
+  request(){
+    this.http.get(`http://localhost:3000/getMyRequest/${localStorage.getItem('userid')}`).subscribe((res:any)=>{
+      console.warn(res)
+      this.dataSource=res?.data
+    })
+  }
+
+  approved(data:any){
+    console.warn(data)
+    this.http.post(`http://localhost:3000/approveRequest/${data.requestId}` , {deadline:data.deadline , taskid:data.taskId}).subscribe((res:any)=>{
+      console.warn(res)
+      if(res.data){
+        Swal.fire({
+          text:"Approved",
+          confirmButtonText:"Ok",
+          icon:"success"
+        })
+
+        this.request()
+      }else if(res.error){
+        Swal.fire({
+          text:"Error",
+          confirmButtonText:"Ok",
+          icon:"error"
+        })
+
+        this.request()
+      }
+    })
+  }
+
+  decline(data:any){
+    console.warn(data)
+    this.http.post(`http://localhost:3000/declineRequest/${data.requestId}` , {deadline:data.deadline , taskid:data.taskId}).subscribe((res:any)=>{
+      console.warn(res)
+      if(res.data){
+        Swal.fire({
+          text:"Request Declined Successfully",
+          confirmButtonText:"Ok",
+          icon:"success"
+        })
+
+        this.request()
+      }else if(res.error){
+        Swal.fire({
+          text:"Error",
+          confirmButtonText:"Ok",
+          icon:"error"
+        })
+
+        this.request()
+      }
+    })
+  }
+
   todayTasks(){
     const today = new Date();
     const startOfDay = new Date(today.setHours(0, 0, 0, 0)); // Set time to 00:00:00
@@ -132,7 +207,7 @@ export class TasksComponent implements OnInit {
     })
     this.getOrganizationPeople()
     this.getAllTasks()
-    
+    this.getRequests()
   }
   
 
@@ -172,6 +247,17 @@ export class TasksComponent implements OnInit {
       console.warn(res)
       this.allTaskCopy=res.data
       this.allTask=res.data
+    })
+  }
+
+  getAllTasksAssignedbyMe(){
+    console.warn("get task called")
+    const userid=localStorage.getItem('userid')
+    this.http.get(`http://localhost:3000/getTasks/${userid}`).subscribe((res:any)=>{
+      console.warn(res)
+      this.allTaskCopy=res?.data
+      this.allTask=res?.data
+      console.warn(this.allTask)
     })
   }
 

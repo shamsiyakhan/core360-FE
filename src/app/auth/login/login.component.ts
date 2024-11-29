@@ -57,12 +57,7 @@ login()
     if(dta.data){
       this.loginform.reset()
       localStorage.setItem("jwt" , dta.data.jwt)
-    /*   Swal.fire({
-        title: 'Success!',
-        text: 'Login Successful',
-        icon: 'success',
-        confirmButtonText: 'OK'
-      }); */
+ 
       this.apirtc.registerUser(dta.data)
       localStorage.setItem('orgId' , dta.data.orgid)
       localStorage.setItem('userid' , dta.data.userid)
@@ -72,8 +67,9 @@ login()
         this.router.navigate(['manager' , 'dashboard'])
       }else if(dta.data.roleid==103){
         this.router.navigate(['employee' , 'dashboard'])
-      }
-    }else{
+      }else{}
+    }else if(dta.error){
+      console.warn("in else if")
       Swal.fire({
         title: 'Failure!',
         text: dta.error,

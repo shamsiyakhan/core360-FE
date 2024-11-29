@@ -1,0 +1,32 @@
+<div class="dialog-container">
+    <h2>Extend Deadline</h2>
+    <form [formGroup]="deadlineForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="msg">Message</label>
+            <textarea
+              id="message"
+              formControlName="msg"
+              placeholder="Enter your message"
+            ></textarea>
+            <div class="error" *ngIf="f['msg'].touched && f['msg'].invalid">
+              Message is required.
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="deadline">Deadline</label>
+            <input id="deadline" type="date" formControlName="deadline" />
+            <div class="error" *ngIf="f['deadline'].touched && f['deadline'].invalid">
+              Deadline is required.
+            </div>
+          </div>
+          
+  
+      <div class="button-container">
+        <button type="submit" [disabled]="deadlineForm.invalid">
+          Extend Deadline
+        </button>
+      </div>
+    </form>
+  </div>
+  

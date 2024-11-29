@@ -84,6 +84,9 @@
     height: 70%;
     padding: 7px 14px;
 }
+.mainRight1{
+    width: 100%;
+}
 
 .mainRight{
     width: 100%;
@@ -163,4 +166,8 @@
     width: 30%;
     align-items: center;
     top: 7px;
+}
+
+mat-tab-group{
+    width: 100% !important;
 }

@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import Swal from 'sweetalert2';
+import { RaiseRequestComponent } from '../raise-request/raise-request.component';
 
 @Component({
   selector: 'app-task',
@@ -15,6 +17,8 @@ export class TaskComponent implements OnInit {
   allTaskCopy:any
   tasks: string[] = ['All Tasks', 'Today', 'Tomorrow', 'This Week', 'This Month', 'Open', 'In Progress', 'Past Due'];
   selectedTask: string | null = null;
+  dataSource = [];
+  displayedColumns: string[] = ['taskname', 'request_addedAt', 'deadline', 'task_deadline' , 'status'];
 
   highlightTask(task: string): void {
     this.selectedTask = task;
@@ -52,6 +56,12 @@ export class TaskComponent implements OnInit {
     });
   }
 
+  extend(taskid:any){
+   this.dialog.open(RaiseRequestComponent ,{
+    width:'500px',
+    data:taskid
+   })
+  }
   tomorrowTasks(){
     const today = new Date();
     today.setHours(0, 0, 0, 0); // Reset time to midnight to compare the date only
@@ -123,7 +133,8 @@ export class TaskComponent implements OnInit {
   })
   constructor(
     private fb: FormBuilder,
-    private http:HttpClient
+    private http:HttpClient,
+    private dialog:MatDialog
   ) { }
   ngOnInit(): void {
     this.addTask.patchValue({
@@ -223,6 +234,23 @@ export class TaskComponent implements OnInit {
           confirmButtonText:"Ok"
         })
       }
+    })
+  }
+
+  onTabChange(event:any){
+    console.warn(event.index)
+
+    if(event.index==0){
+      this.getAllTasks()
+    }else if(event.index==1){
+      this.getRequestedStatus()
+    }
+  }
+
+  getRequestedStatus(){
+    this.http.get(`http://localhost:3000/requestStatus/${localStorage.getItem('userid')}`).subscribe((res:any)=>{
+      console.warn(res)
+      this.dataSource=res?.data
     })
   }
 

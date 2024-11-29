@@ -15,6 +15,7 @@ import { CategoryComponent } from './category/category.component';
 import { AddInventoryComponent } from './add-inventory/add-inventory.component';
 import { UpdateInventoryComponent } from './update-inventory/update-inventory.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { RaiseRequestComponent } from './raise-request/raise-request.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     InventoryComponent,
     CategoryComponent,
     AddInventoryComponent,
-    UpdateInventoryComponent
+    UpdateInventoryComponent,
+    RaiseRequestComponent
   ],
   imports: [
     CommonModule,

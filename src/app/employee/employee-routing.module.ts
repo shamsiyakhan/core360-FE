@@ -5,6 +5,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { TeamsComponent } from './teams/teams.component';
 import { TaskComponent } from './task/task.component';
 import { InventoryComponent } from './inventory/inventory.component';
+import { MessagingComponent } from '../messaging/messaging.component';
 
 const routes: Routes = [
   {
@@ -25,6 +26,10 @@ const routes: Routes = [
     {
       path:"inventory",
       component:InventoryComponent
+    },
+    {
+      path:'messages',
+      component:MessagingComponent
     }
   ]
 
